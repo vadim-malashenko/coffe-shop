@@ -5,14 +5,14 @@
         <title>Coffee Shop</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+
     </head>
 
     <body>
 
         <select-drink drink-type="Coffee"></select-drink>
 
-        <script>
+        <script type="module">
             import SelectDrink from '/src/select-drink.js'
             customElements.define(`select-drink`, SelectDrink)
         </script>
