@@ -25,4 +25,4 @@ class SelectDrink extends HTMLElement
     }
 }
 
-export default SelectDrinkы
+export default SelectDrink
