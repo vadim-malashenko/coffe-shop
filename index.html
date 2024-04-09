@@ -6,6 +6,21 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        <style>
+
+            .drinks {
+                display: flex;
+                flex-flow: row wrap;
+            }
+
+            .drink {
+                flex: 200px;
+                padding: 10px;
+                margin: 10px;
+            }            
+
+        </style>
+
     </head>
 
     <body>
@@ -21,95 +36,136 @@
         
         </header>
         
-        <article id="drinks">
+        <nav>
         
-            <nav>
-            
-                <ul id="drink-types">
-            
-                    <li class="active">
-                        <a href="javascript:return false" title="Бодрящий кофе"><img data-src="" alt="" width="" height=""></a>
-                        <a href="javascript:return false" title="Бодрящий кофе">Кофе</a>
-                    </li>
-            
-                    <li>
-                        <a href="#tea" title="Ароматный чай"><img data-src="" alt="" width="" height=""></a>
-                        <a href="#tea" title="Ароматный чай">Чай</a>
-                    </li>
-            
-                    <li>
-                        <a href="#milkshake" title="Пломбир и отборное молоко"><img data-src="" alt="" width="" height=""></a>
-                        <a href="#milkshake" title="Пломбир и отборное молоко">Молочные коктейли</a>
-                    </li>
-            
-                    <li>
-                        <a href="#fruit" title="Фруктовая сладость"><img data-src="" alt="" width="" height=""></a>
-                        <a href="#fruit" title="Фруктовая сладость">Морсы</a>
-                    </li>
-            
-                    <li>
-                        <a href="#soda" title="Шипучая свежесть"><img data-src="" alt="" width="" height=""></a>
-                        <a href="#soda" title="Шипучая свежесть">Газированные напитки</a>
-                    </li>
-            
-                </ul>
-            
-            </nav>
+            <ul id="drink-types">
+        
+                <li class="active">
+                    <a href="javascript:return false" title="Бодрящий кофе"><img data-src="" alt="" width="" height=""></a>
+                    <a href="javascript:return false" title="Бодрящий кофе">Кофе</a>
+                </li>
+        
+                <li>
+                    <a href="#tea" title="Ароматный чай"><img data-src="" alt="" width="" height=""></a>
+                    <a href="#tea" title="Ароматный чай">Чай</a>
+                </li>
+        
+                <li>
+                    <a href="#milkshake" title="Пломбир и отборное молоко"><img data-src="" alt="" width="" height=""></a>
+                    <a href="#milkshake" title="Пломбир и отборное молоко">Молочные коктейли</a>
+                </li>
+        
+                <li>
+                    <a href="#fruit" title="Фруктовая сладость"><img data-src="" alt="" width="" height=""></a>
+                    <a href="#fruit" title="Фруктовая сладость">Морсы</a>
+                </li>
+        
+                <li>
+                    <a href="#soda" title="Шипучая свежесть"><img data-src="" alt="" width="" height=""></a>
+                    <a href="#soda" title="Шипучая свежесть">Газированные напитки</a>
+                </li>
+        
+            </ul>
+        
+        </nav>
 
-            <article id="#coffee">
+        <article class="drinks coffee" id="#coffee">
 
-                <header>        
-                    <h2>Кофе</h2>
-                </header>
-            
-                <article id="espresso">
-                    
-                    <a href="" title="">
-                        <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
-                        <h2>Эспрессо</h2>
-                        <p>от 79₽;</p>
-                    </a>
+            <header>        
+                <h2>Кофе</h2>
+            </header>
+        
+            <article class="drink" id="espresso">
+                
+                <a href="" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                    <h2>Эспрессо</h2>
+                    <p>от 79₽;</p>
+                </a>
 
-                </article>
+            </article>
 
-                <article id="espresso2x">
-                    
-                    <a href="#" title="">
-                        <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
-                        <h2>Эспрессо</h2>
-                        <p>от 109₽;</p>
-                    </a>
+            <article class="drink" id="espresso2x">
+                
+                <a href="#" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                    <h2>Эспрессо</h2>
+                    <p>от 109₽;</p>
+                </a>
 
-                </article>
+            </article>
 
-                <article id="americano">
-                    
-                    <a href="" title="">
-                        <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка эспрессо">
-                        <h2>Американо</h2>
-                        <p>от 119₽;</p>
-                    </a>
-
-                </article>
+            <article class="drink" id="americano">
+                
+                <a href="" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка эспрессо">
+                    <h2>Американо</h2>
+                    <p>от 119₽;</p>
+                </a>
 
             </article>
         
+            <article class="drink" id="espresso">
+                
+                <a href="" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                    <h2>Эспрессо</h2>
+                    <p>от 79₽;</p>
+                </a>
+
+            </article>
+
+            <article class="drink" id="espresso2x">
+                
+                <a href="#" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                    <h2>Эспрессо</h2>
+                    <p>от 109₽;</p>
+                </a>
+
+            </article>
+
+            <article class="drink" id="americano">
+                
+                <a href="" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка эспрессо">
+                    <h2>Американо</h2>
+                    <p>от 119₽;</p>
+                </a>
+
+            </article>
+        
+            <article class="drink" id="espresso">
+                
+                <a href="" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                    <h2>Эспрессо</h2>
+                    <p>от 79₽;</p>
+                </a>
+
+            </article>
+
+            <article class="drink" id="espresso2x">
+                
+                <a href="#" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                    <h2>Эспрессо</h2>
+                    <p>от 109₽;</p>
+                </a>
+
+            </article>
+
+            <article class="drink" id="americano">
+                
+                <a href="" title="">
+                    <img width="296" height="296" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка эспрессо">
+                    <h2>Американо</h2>
+                    <p>от 119₽;</p>
+                </a>
+
+            </article>
+
         </article>
-
-        <section id="#cup">
-            <header>
-                Cup
-            </header>
-        </section>
-
-        <section id="#syrup">
-            <header>
-                Syrup
-            </header>
-        </section>
-
-        <script type="module">
-        </script>
 
     </body>
 
