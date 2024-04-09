@@ -73,7 +73,7 @@
                 background-color: #EFCCB9;
             }
 
-            body> header {
+            body > header {
                 padding: 1rem;
                 display: grid;
                 grid-template-columns: 1fr max-content;
@@ -81,35 +81,35 @@
                 background-color: #EFCCB9;
             }
 
-            body> header> nav {
+            body > header> nav {
                 padding: 1rem;
                 border-radius: 1rem;
                 background-color: #FFFFFF;
                 border: 1px solid #FFFFFF;
             }
 
-            body> header> nav :not(:last-child)::after {
+            body > header> nav :not(:last-child)::after {
                 content: " | ";
             }
 
-            body> nav {
+            body > section {
                 background-color: #F3F3F3;
             }
 
-            body> nav ul {
+            body > section > nav ul {
                 display: flex;
                 flex-flow: row nowrap;
             }
 
-            body> nav ul li {
+            body > section > nav ul li {
                 flex-basis: 270px;
                 list-style: none;
                 text-align: center;
                 font-weight: bold;
             }
 
-            body> article,
-            body> nav {
+            body > section > article,
+            body > section > nav {
                 border: 0;
                 border-top: 2px solid #ababab;
                 border-radius: 0;
@@ -117,21 +117,25 @@
                 border-top-right-radius: 2rem;
             }
 
-            body> article header {
+            body > section > article {
+                background-color: #FFFFFF;
+            }
+
+            body > section > article header {
                 margin-top: 2rem;
             }
 
-            body> article h2 {
+            body > section > article h2 {
                 font-size: 3rem;
             }
 
-            body> article> section {
+            body > section > article> section {
                 display: flex;
                 flex-flow: row wrap;
                 align-items: center;
             }
 
-            body> article> section> article {
+            body > section > article> section> article {
                 flex-basis: 360px;
                 text-align: center;
             }
@@ -141,7 +145,7 @@
                 text-decoration: none;
             }
 
-            body> article> section> article a {
+            body > section > article> section> article a {
                 display: block;
                 width: calc(100% - 1rem);
                 margin: 0.5rem;
@@ -150,16 +154,16 @@
                 text-align: center;
             }
 
-            body> article> section> article a h3,
-            body> nav ul li p {
+            body > section > article> section> article a h3,
+            body > section > nav ul li p {
                 font-size: 1.5rem;
             }
 
-            body> article> section> article a p {
+            body > section > article> section> article a p {
                 font-size: 2rem;
             }
 
-            body> article> section> article a p span {
+            body > section > article> section> article a p span {
                 font-size: 2.5rem;
             }
 
@@ -170,37 +174,37 @@
             }
 
             @media only screen and (max-width: 720px) {
-                body> nav ul li {
+                body > section > nav ul li {
                     flex-basis: 180px;
                 }
-                body> article> section> article {
+                body > section > article> section> article {
                     flex-basis: 240px;
                 }
             }
 
             @media only screen and (max-width: 400px) {
-                body> nav ul li {
+                body > section > nav ul li {
                     flex-basis: 100px;
                 }
-                body> article> section> article {
+                body > section > article> section> article {
                     flex-basis: 133.33px;
                 }
             }
 
             @media only screen and (max-width: 390px) {
-                body> nav ul li {
+                body > section > nav ul li {
                     flex-basis: 97px;
                 }
-                body> article> section> article {
+                body > section > article> section> article {
                     flex-basis: 130px;
                 }
             }
 
             @media only screen and (max-width: 375px) {
-                body> nav ul li {
+                body > section > nav ul li {
                     flex-basis: 93px;
                 }
-                body> article> section> article {
+                body > section > article> section> article {
                     flex-basis: 125px;
                 }
             }
@@ -233,94 +237,98 @@
             </nav>
         
         </header>
-        
-        <nav>
-        
-            <ul>
-        
-                <li>
-                    <a href="#coffee" title="Бодрящий кофе">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee.png" alt="Чашка эспрессо">
-                        <p>Кофе</p>
-                    </a>
-                </li>
-        
-                <li>
-                    <a href="#tea" title="Ароматный чай">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/tea.png" alt="Чай">
-                        <p>Чай</p>
-                    </a>
-                </li>
-        
-                <li>
-                    <a href="#milkshake" title="Пломбир и отборное молоко">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/milkshake.png" alt="Молочный коктейль">
-                        <p>Коктейли</p>
-                    </a>
-                </li>
-        
-                <li>
-                    <a href="#fruit" title="Фруктовая сладость">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/fruit.png" alt="Фруктовый напиток">
-                        <p>Морсы</p>
-                    </a>
-                </li>
-        
-            </ul>
-        
-        </nav>
 
-        <article id="coffee">
-
-            <header>        
-                <h2>Кофе</h2>
-            </header>
-
-            <section>
+        <section>
         
-                <article>
-                    
-                    <a href="" title="">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
-                        <h3>Эспрессо</h3>
-                        <p>от <span>79₽</span></p>
-                    </a>
-
-                </article>
-
-                <article>
-                    
-                    <a href="#" title="">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
-                        <h3>Эспрессо 2x</h3>
-                        <p>от <span>79₽</span></p>
-                    </a>
-
-                </article>
-
-                <article>
-                    
-                    <a href="" title="">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка американо">
-                        <h3>Американо</h3>
-                        <p>от <span>79₽</span></p>
-                    </a>
-
-                </article>
+            <nav>
             
-                <article>
-                    
-                    <a href="" title="">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/latte.jpg" alt="Чашка латте">
-                        <h3>Латте</h3>
-                        <p>от <span>79₽</span></p>
-                    </a>
-
-                </article>
+                <ul>
             
-            </section>
+                    <li>
+                        <a href="#coffee" title="Бодрящий кофе">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee.png" alt="Чашка эспрессо">
+                            <p>Кофе</p>
+                        </a>
+                    </li>
+            
+                    <li>
+                        <a href="#tea" title="Ароматный чай">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/tea.png" alt="Чай">
+                            <p>Чай</p>
+                        </a>
+                    </li>
+            
+                    <li>
+                        <a href="#milkshake" title="Пломбир и отборное молоко">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/milkshake.png" alt="Молочный коктейль">
+                            <p>Коктейли</p>
+                        </a>
+                    </li>
+            
+                    <li>
+                        <a href="#fruit" title="Фруктовая сладость">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/fruit.png" alt="Фруктовый напиток">
+                            <p>Морсы</p>
+                        </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
 
-        </article>
+            <article id="coffee">
+
+                <header>        
+                    <h2>Кофе</h2>
+                </header>
+
+                <section>
+            
+                    <article>
+                        
+                        <a href="" title="">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                            <h3>Эспрессо</h3>
+                            <p>от <span>79₽</span></p>
+                        </a>
+
+                    </article>
+
+                    <article>
+                        
+                        <a href="#" title="">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+                            <h3>Эспрессо 2x</h3>
+                            <p>от <span>79₽</span></p>
+                        </a>
+
+                    </article>
+
+                    <article>
+                        
+                        <a href="" title="">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка американо">
+                            <h3>Американо</h3>
+                            <p>от <span>79₽</span></p>
+                        </a>
+
+                    </article>
+                
+                    <article>
+                        
+                        <a href="" title="">
+                            <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/latte.jpg" alt="Чашка латте">
+                            <h3>Латте</h3>
+                            <p>от <span>79₽</span></p>
+                        </a>
+
+                    </article>
+                
+                </section>
+
+            </article>
+
+        </section>
 
     </body>
 
