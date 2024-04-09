@@ -73,13 +73,23 @@
             }
 
             body> header {
+                height: 232px;
                 padding-top: 1rem;
                 display: grid;
                 grid-template-columns: 1fr max-content;
+                background-color: #EFCCB9;
+            }
+
+            body> header> nav {
+                height: 103px;
             }
 
             body> header> nav :not(:last-child)::after {
                 content: " | ";
+            }
+
+            body> nav {
+                background-color: #DCDCDC;
             }
 
             body> nav ul {
@@ -92,6 +102,10 @@
                 list-style: none;
                 text-align: center;
                 font-weight: bold;
+            }
+
+            body> article h1 {
+                font-size: 3rem;
             }
 
             body> article> section {
