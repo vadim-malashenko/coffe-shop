@@ -76,6 +76,10 @@
                 border: 1px dotted fuchsia;
             }
 
+            body> header> nav :not(:last-child)::after {
+                content: " | ";
+            }
+
             body> nav ul {
                 display: flex;
                 flex-flow: row nowrap;
