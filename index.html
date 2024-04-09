@@ -120,6 +120,17 @@
             body> nav ul li {
                 flex: initial;
                 list-style: none;
+                text-align: center;
+                font-size: var(--accent-text);
+            }
+
+            @media only screen and (max-width: 1080px) {
+                body> nav ul li {
+                    flex-basis: 270px;
+                }
+                body> article> section> article {
+                    flex-basis: 360px;
+                }
             }
 
             @media only screen and (max-width: 720px) {
