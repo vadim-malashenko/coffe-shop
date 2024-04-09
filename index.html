@@ -61,6 +61,8 @@
             }
 
             body {
+                display: grid;
+                grid-template-rows: 1fr 2fr max-content;
                 width: 100%;
                 max-width: 1080px;
                 margin: 0 auto;
@@ -70,7 +72,7 @@
 
             body> header {
                 display: grid;
-                grid-template-columns: 3fr 1fr;
+                grid-template-columns: 1fr max-content;
                 border: 1px dotted fuchsia;
             }
 
@@ -138,6 +140,10 @@
                 body> article> section> article {
                     flex-basis: 125px;
                 }
+            }
+
+            h1, h2, h3, body> header, body>nav {
+                margin: 2rem 0;
             }
         </style>
         
