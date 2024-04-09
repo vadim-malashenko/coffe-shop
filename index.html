@@ -103,14 +103,16 @@
             }
 
             a, a:hover, a:visited, a:active {
-                display: block;
-                width: calc(100% - 2rem);
-                padding: 1rem;
-                margin: auto;
-                border: 2px solid lightsteelblue;
-                border-radius: 5px;
                 color: var(--text);
                 text-decoration: none;
+            }
+
+            body> article> section> article a {
+                display: block;
+                width: calc(100% - 2rem);
+                margin: 1rem;
+                border: 2px solid lightsteelblue;
+                border-radius: 5px;
             }
 
             body> article> section> article a p {
