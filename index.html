@@ -13,10 +13,13 @@
                 flex-flow: row wrap;
             }
 
-            .drink {
-                flex: 200px;
+            .drinks .type, .drink {
+                flex: initial;
+                display: flex;
+                flex-flow: column;
                 padding: 10px;
                 margin: 10px;
+                border: 1px dotted fuchsia;
             }            
 
         </style>
@@ -69,9 +72,9 @@
         
         </nav>
 
-        <article class="drinks" id="#coffee">
+        <article class="drinks" id="coffee">
 
-            <header>        
+            <header class="type">        
                 <h2>Кофе</h2>
             </header>
         
@@ -137,7 +140,7 @@
 
         </article>
 
-        <article class="drinks" id="#tea">
+        <article class="drinks" id="tea">
 
             <header>        
                 <h2>Чай</h2>
