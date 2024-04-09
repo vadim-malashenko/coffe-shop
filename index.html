@@ -71,33 +71,83 @@
 
             body> header {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-
-            body> article> section {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-
-            body> article> section> article {
-                text-align: center;
+                grid-template-columns: 2fr 1fr;
+                border: 1px dotted fuchsia;
             }
 
             body> nav ul {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                display: flex;
+                flex-flow: row nowrap;
             }
 
             body> nav ul li {
+                flex-basis: initial;
                 list-style: none;
                 text-align: center;
                 font-weight: bold;
+                border: 1px dotted fuchsia;
+            }
+
+            body> article> section {
+                display: flex;
+                flex-flow: row wrap;
+            }
+
+            body> article> section> article {
+                flex-basis: initial;
+                text-align: center;
+                border: 1px dotted fuchsia;
             }
 
             article img {
                 display: block;
                 margin: 0 auto;
                 max-width: 100%;
+            }
+
+            @media only screen and (max-width: 1080px) {
+                body> nav ul li {
+                    flex-basis: 270px;
+                }
+                body> article> section> article {
+                    flex-basis: 360px;
+                }
+            }
+
+            @media only screen and (max-width: 720px) {
+                body> nav ul li {
+                    flex-basis: 180px;
+                }
+                body> article> section> article {
+                    flex-basis: 240px;
+                }
+            }
+
+            @media only screen and (max-width: 400px) {
+                body> nav ul li {
+                    flex-basis: 100px;
+                }
+                body> article> section> article {
+                    flex-basis: 133.33px;
+                }
+            }
+
+            @media only screen and (max-width: 390px) {
+                body> nav ul li {
+                    flex-basis: 97px;
+                }
+                body> article> section> article {
+                    flex-basis: 130px;
+                }
+            }
+
+            @media only screen and (max-width: 375px) {
+                body> nav ul li {
+                    flex-basis: 93px;
+                }
+                body> article> section> article {
+                    flex-basis: 125px;
+                }
             }
         </style>
         
@@ -129,21 +179,21 @@
         
                 <li>
                     <a href="#tea" title="Ароматный чай">
-                        <img width="256" height="256" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/tea.png" alt="Чай">
+                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/tea.png" alt="Чай">
                         <div>Чай</div>
                     </a>
                 </li>
         
                 <li>
                     <a href="#milkshake" title="Пломбир и отборное молоко">
-                        <img width="243" height="243" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/milkshake.png" alt="Молочный коктейль">
+                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/milkshake.png" alt="Молочный коктейль">
                         <div>Коктейли</div>
                     </a>
                 </li>
         
                 <li>
                     <a href="#fruit" title="Фруктовая сладость">
-                        <img  width="238" height="238" src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/fruit.png" alt="Фруктовый напиток">
+                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/fruit.png" alt="Фруктовый напиток">
                         <div>Морсы</div>
                     </a>
                 </li>
