@@ -103,22 +103,21 @@
                         margin: 1rem auto;
                     }
 
-            body> nav {
-                
-            }
-
             body> article {
                 padding-top: 1.5rem;
             }
-                body> article> section {
-                    display: flex;
-                    flex-direction: row wrap;
-                    justify-content: flex-start;
-                }
 
-                    body> article> section> article {
-                        flex: initial;
-                    }
+            body> nav ul,
+            body> article> section {
+                display: flex;
+                flex-direction: row wrap;
+                justify-content: flex-start;
+            }
+
+            body> nav ul li,
+            body> article> section> article {
+                flex: initial;
+            }
         </style>
 
         <style>
