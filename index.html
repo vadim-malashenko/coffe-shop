@@ -73,15 +73,18 @@
             }
 
             body> header {
-                height: 232px;
-                padding-top: 1rem;
+                padding: 1rem;
                 display: grid;
                 grid-template-columns: 1fr max-content;
+                align-items: center;
                 background-color: #EFCCB9;
             }
 
             body> header> nav {
-                height: 103px;
+                padding: 1.5rem 1rem 0;
+                border-radius: 1rem;
+                background-color: #FFFFFF;
+                border: 1px solid #FFFFFF;
             }
 
             body> header> nav :not(:last-child)::after {
@@ -207,6 +210,7 @@
             <h1>Выбор напитка</h1>
         
             <nav>
+                <a href="#phone"><svg></svg></a>
                 <a href="#login">Вход</a>
                 <a href="#register">Регистрация</a>
             </nav>
