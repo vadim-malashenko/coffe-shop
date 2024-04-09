@@ -66,8 +66,9 @@
                 width: 100%;
                 max-width: 1080px;
                 margin: 0 auto;
-                font-size: 1.15rem;
-                line-height: 1.5;
+                padding: 1rem;
+                font-size: 1rem;
+                line-height: 1;
             }
 
             body> header {
@@ -96,12 +97,26 @@
             body> article> section {
                 display: flex;
                 flex-flow: row wrap;
+                align-items: center;
             }
 
             body> article> section> article {
                 flex-basis: 360px;
                 text-align: center;
                 border: 1px dotted fuchsia;
+            }
+
+            body> article> section> article a {
+                display: block;
+                width: calc(100% - 2rem);
+                padding: 1rem;
+                margin: auto;
+                border: 2px solid lightsteelblue;
+                border-radius: 5px;
+            }
+
+            body> article> section> article a p {
+                font-size: xx-large;
             }
 
             img {
