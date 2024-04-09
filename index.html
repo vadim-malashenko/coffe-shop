@@ -75,33 +75,28 @@
 
         <style>
             body {
-                color: var(--text);
-                background-color: var(--bg);
                 font-size: 1.15rem;
                 line-height: 1.5;
                 margin: 0;
             }
 
-                body> header {
-                    grid-column: 1 / -1;
-                    background-color: var(--accent-bg);
-                    text-align: center;
-                    padding: 0 0.5rem 2rem 0.5rem;
-                }
+            body> header {
+                padding: 0 0.5rem 2rem 0.5rem;
+            }
 
-                    body> header> *:only-child {
-                        margin-block-start: 2rem;
-                    }
+            body> header> *:only-child {
+                margin-block-start: 2rem;
+            }
 
-                    body> header h1 {
-                        max-width: 1080px;
-                        margin: 1rem auto;
-                    }
+            body> header h1 {
+                max-width: 1080px;
+                margin: 1rem auto;
+            }
 
-                    body> header p {
-                        max-width: 36rem;
-                        margin: 1rem auto;
-                    }
+            body> header p {
+                max-width: 36rem;
+                margin: 1rem auto;
+            }
 
             body> article {
                 padding-top: 1.5rem;
@@ -178,14 +173,6 @@
                     font-size: 1.25rem;
                 }
             }
-            a,
-            a:visited {
-                color: var(--accent);
-            }
-
-            a:hover {
-                text-decoration: none;
-            }
 
             button,
             .button,
@@ -194,9 +181,6 @@
             input[type="reset"],
             input[type="button"],
             label[type="button"] {
-                border: 1px solid var(--accent);
-                background-color: var(--accent);
-                color: var(--accent-text);
                 padding: 0.5rem 0.9rem;
                 text-decoration: none;
                 line-height: normal;
@@ -208,9 +192,6 @@
             select:disabled,
             button[disabled] {
                 cursor: not-allowed;
-                background-color: var(--disabled);
-                border-color: var(--disabled);
-                color: var(--text-light);
             }
 
             input[type="range"] {
@@ -229,8 +210,6 @@
             input[type="reset"]:enabled:hover,
             input[type="button"]:enabled:hover,
             label[type="button"]:hover {
-                background-color: var(--accent-hover);
-                border-color: var(--accent-hover);
                 cursor: pointer;
             }
 
@@ -272,9 +251,6 @@
             header> nav a,
             header> nav a:visited {
                 margin: 0 0.5rem 1rem 0.5rem;
-                border: 1px solid var(--border);
-                border-radius: var(--standard-border-radius);
-                color: var(--text);
                 display: inline-block;
                 padding: 0.1rem 1rem;
                 text-decoration: none;
@@ -283,8 +259,6 @@
             header> nav a:hover,
             header> nav a.current,
             header> nav a[aria-current="page"] {
-                border-color: var(--accent);
-                color: var(--accent);
                 cursor: pointer;
             }
 
@@ -298,9 +272,6 @@
             }
 
             aside, details, pre, progress {
-                background-color: var(--accent-bg);
-                border: 1px solid var(--border);
-                border-radius: var(--standard-border-radius);
                 margin-bottom: 1rem;
             }
 
@@ -413,17 +384,9 @@
                 font-family: inherit;
                 padding: 0.5rem;
                 margin-bottom: 0.5rem;
-                border-radius: var(--standard-border-radius);
                 box-shadow: none;
                 max-width: 100%;
                 display: inline-block;
-            }
-            textarea,
-            select,
-            input {
-                color: var(--text);
-                background-color: var(--bg);
-                border: 1px solid var(--border);
             }
             label {
                 display: block;
@@ -460,11 +423,6 @@
                 border-radius: 100%;
             }
 
-            input[type="checkbox"]:checked,
-            input[type="radio"]:checked {
-                background-color: var(--accent);
-            }
-
             input[type="checkbox"]:checked::after {
                 content: " ";
                 width: 0.18em;
@@ -486,7 +444,6 @@
                 border-radius: 100%;
                 position: absolute;
                 top: 0.125em;
-                background-color: var(--bg);
                 left: 0.125em;
                 font-size: 32px;
             }
@@ -513,19 +470,13 @@
             hr {
             border: none;
                 height: 1px;
-                background: var(--border);
                 margin: 1rem auto;
             }
 
             mark {
                 padding: 2px 5px;
                 border-radius: var(--standard-border-radius);
-                background-color: var(--marked);
                 color: black;
-            }
-
-            mark a {
-                color: #0d47a1;
             }
 
             img,
@@ -543,7 +494,6 @@
             figcaption {
                 text-align: center;
                 font-size: 0.9rem;
-                color: var(--text-light);
                 margin-bottom: 1rem;
             }
 
@@ -552,18 +502,16 @@
                 margin-inline-end: 0;
                 margin-block: 2rem;
                 padding: 0.4rem 0.8rem;
-                color: var(--text-light);
                 font-style: italic;
             }
 
             cite {
                 font-size: 0.9rem;
-                color: var(--text-light);
                 font-style: normal;
             }
 
             dt {
-                color: var(--text-light);
+                
             }
 
             code,
@@ -572,12 +520,9 @@
             kbd,
             samp {
                 font-family: var(--mono-font);
-                color: var(--code);
             }
 
             kbd {
-                color: var(--preformatted);
-                border: 1px solid var(--preformatted);
                 padding: 0.1rem 0.4rem;
             }
 
@@ -585,11 +530,9 @@
                 padding: 1rem 1.4rem;
                 max-width: 100%;
                 overflow: auto;
-                color: var(--preformatted);
             }
 
             pre code {
-                color: var(--preformatted);
                 background: none;
                 margin: 0;
                 padding: 0;
@@ -600,28 +543,24 @@
             }
 
             progress:indeterminate {
-                background-color: var(--accent-bg);
+
             }
 
             progress::-webkit-progress-bar {
-                border-radius: var(--standard-border-radius);
-                background-color: var(--accent-bg);
+                
             }
 
             progress::-webkit-progress-value {
-                border-radius: var(--standard-border-radius);
-                background-color: var(--accent);
+                
             }
 
             progress::-moz-progress-bar {
-                border-radius: var(--standard-border-radius);
-                background-color: var(--accent);
                 transition-property: width;
                 transition-duration: 0.3s;
             }
 
             progress:indeterminate::-moz-progress-bar {
-                background-color: var(--accent-bg);
+                
             }
 
             dialog {
@@ -630,7 +569,6 @@
             }
 
             dialog::backdrop {
-                background-color: var(--bg);
                 opacity: 0.8;
             }
 
