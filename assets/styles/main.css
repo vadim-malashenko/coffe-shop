@@ -39,6 +39,13 @@
     }
 }
 
+@font-face { 
+    font-family: MontRegular;
+    src: url("http://coffee.shop/assets/fonts/Mont/MontRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -56,78 +63,75 @@ body {
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
-    font-family: Mont;
+    font-family: MontRegular;
     font-size: 1rem;
     font-weight: normal;
     line-height: 1;
 }
-
-body > article {
-    background-color: #EFCCB9;
-}
-
-body > article > header {
-    padding: 1rem;
+body > header {
+    padding: 1rem 1rem 3rem 1rem;
     display: grid;
     grid-template-columns: 1fr max-content;
     align-items: center;
+    background-color: #EFCCB9;
 }
 
-body > article > header> nav {
+body > header> nav {
     padding: 1rem;
     border-radius: 1rem;
     background-color: #FFFFFF;
     border: 1px solid #FFFFFF;
 }
 
-body > article > header> nav :not(:last-child)::after {
+body > header> nav :not(:last-child)::after {
     content: " | ";
 }
 
-body > article > section {
+body > nav {
+    margin-top: -2rem;
+    padding-bottom: 3rem;
     background-color: #F3F3F3;
+    border: 0;
+    border-top: 2px solid #D0D0D0;
+    border-radius: 0;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
 }
 
-body > article > section > nav ul {
+body > nav ul {
     display: flex;
     flex-flow: row nowrap;
 }
 
-body > article > section > nav ul li {
+body > nav ul li {
     flex-basis: 270px;
     list-style: none;
     text-align: center;
     font-weight: bold;
 }
 
-body > article > section > article,
-body > article > section > nav {
+body > article {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-top: -2rem;
+    background-color: #FFFFFF;
     border: 0;
-    border-top: 2px solid #d0cdcd;
+    border-top: 2px solid #D0D0D0;
     border-radius: 0;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
 }
 
-body > article > section > article {
-    background-color: #FFFFFF;
+body > article header {
+    flex-basis: 100%;
 }
 
-body > article > section > article header {
-    margin-top: 2rem;
-}
-
-body > article > section > article h2 {
+body > article header h1 {
     font-size: 3rem;
 }
 
-body > article > section > article> section {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-}
-
-body > article > section > article> section> article {
+body > article > article {
     flex-basis: 360px;
     text-align: center;
 }
@@ -137,7 +141,7 @@ a, a:hover, a:visited, a:active {
     text-decoration: none;
 }
 
-body > article > section > article> section> article a {
+body > article > article a {
     display: block;
     width: calc(100% - 1rem);
     margin: 0.5rem;
@@ -146,16 +150,16 @@ body > article > section > article> section> article a {
     text-align: center;
 }
 
-body > article > section > article> section> article a h3,
-body > article > section > nav ul li p {
+body > article > article a h1,
+body > nav ul li p {
     font-size: 1.5rem;
 }
 
-body > article > section > article> section> article a p {
+body > article > article a p {
     font-size: 2rem;
 }
 
-body > article > section > article> section> article a p span {
+body > article > article a p span {
     font-size: 2.5rem;
 }
 
@@ -166,37 +170,37 @@ img {
 }
 
 @media only screen and (max-width: 720px) {
-    body > article > section > nav ul li {
+    body > nav ul li {
         flex-basis: 180px;
     }
-    body > article > section > article> section> article {
+    body > article > article {
         flex-basis: 240px;
     }
 }
 
 @media only screen and (max-width: 400px) {
-    body > article > section > nav ul li {
+    body > nav ul li {
         flex-basis: 100px;
     }
-    body > article > section > article> section> article {
+    body > article > article {
         flex-basis: 133.33px;
     }
 }
 
 @media only screen and (max-width: 390px) {
-    body > article > section > nav ul li {
+    body > nav ul li {
         flex-basis: 97px;
     }
-    body > article > section > article> section> article {
+    body > article > article {
         flex-basis: 130px;
     }
 }
 
 @media only screen and (max-width: 375px) {
-    body > article > section > nav ul li {
+    body > nav ul li {
         flex-basis: 93px;
     }
-    body > article > section > article> section> article {
+    body > article > article {
         flex-basis: 125px;
     }
 }
@@ -206,6 +210,6 @@ h1, img, p {
 }
 
 h1 {
-    margin-left: 1rem;
+    margin-left: 2rem;
     margin-top: 2rem;
 }
