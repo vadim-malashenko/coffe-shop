@@ -108,7 +108,6 @@
                 justify-content: flex-start;
             }
 
-            body> nav ul li,
             body> article> section> article {
                 flex: initial;
             }
@@ -122,7 +121,30 @@
 
             body> nav ul li {
                 list-style: none;
-                flex: 25%;
+            }
+
+            @media only screen and (max-width: 720px) {
+                body> nav ul li {
+                    flex-basis: 180px;
+                }
+            }
+
+            @media only screen and (max-width: 400px) {
+                body> nav ul li {
+                    flex-basis: 100px;
+                }
+            }
+
+            @media only screen and (max-width: 390px) {
+                body> nav ul li {
+                    flex-basis: 97px;
+                }
+            }
+
+            @media only screen and (max-width: 375px) {
+                body> nav ul li {
+                    flex-basis: 93px;
+                }
             }
         </style>
 
