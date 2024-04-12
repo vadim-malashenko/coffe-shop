@@ -1,32 +1,45 @@
+@font-face { 
+    font-family: MontSemiBold;
+    src: url("../fonts/Mont/MontSemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100;
+}
+
+@font-face { 
+    font-family: MontRegular;
+    src: url("../fonts/Mont/MontRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100;
+}
+
+@font-face { 
+    font-family: MontThin;
+    src: url("../fonts/Mont/MontThin.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100;
+}
+
 :root, ::backdrop {
-    --sans-font: -apple-system,
-        BlinkMacSystemFont,
-        "Noto Sans",
-        Mont,
-        sans-serif;
-    --mono-font:
-        Consolas,
-        "Ubuntu Mono",
-        Mont,
-        monospace;
-    --bg: #fff;
-    --accent-bg: #f5f7ff;
-    --text: #212121;
-    --text-light: #585858;
-    --border: #898EA4;
-    --accent: #0d47a1;
-    --accent-hover: #1266e2;
-    --accent-text: var(--bg);
-    --code: #d81b60;
-    --preformatted: #444;
-    --marked: #ffdd33;
-    --disabled: #efefef;
+    --mont: MontRegular, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mont-bold: MontSemiBold -apple-system, BlinkMacSystemFont, sans-serif;
+    --mont-light: MonoThin -apple-system, BlinkMacSystemFont, sans-serif;
+    --bg: #FFFFFF;
+    --accent-bg: #CCB1A0;
+    --accent-light-bg: #FFF4F0;
+    --accent-hover-bg: #F5D009;
+    --text: #131313;
+    --text-light: #776E71;
+    --border: #907966;
+    --accent: #1C1413;
+    --accent-hover: #4C4443;
+    --accent-text: #434343;
+    --disabled: #F1E2D1;
 }
 
 @media (prefers-color-scheme: dark) {
     :root, ::backdrop {
         color-scheme: dark;
-        --bg: #212121;
+        --bg: #131313;
         --accent-bg: #2b2b2b;
         --text: #dcdcdc;
         --text-light: #ababab;
@@ -37,13 +50,6 @@
         --preformatted: #ccc;
         --disabled: #111;
     }
-}
-
-@font-face { 
-    font-family: MontRegular;
-    src: url("http://coffee.shop/assets/fonts/Mont/MontRegular.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 100;
 }
 
 *, *::before, *::after {
@@ -58,109 +64,123 @@ html {
 }
 
 body {
-    /* display: grid;
-    grid-template-rows: 1fr 2fr max-content; */
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
-    font-family: MontRegular;
+    font-family: var(--mont);
     font-size: 1rem;
     font-weight: normal;
     line-height: 1;
+    background-color: var(--accent-hover-bg);
+    color: var(--text);
 }
-body > header {
+
+a, a:link, a:active, a:visited, a:hover {
+    text-decoration: none;
+    color: var(--text);
+}
+
+header {
     padding: 1rem 1rem 3rem 1rem;
     display: grid;
     grid-template-columns: 1fr max-content;
     align-items: center;
-    background-color: #EFCCB9;
+    background-color: var(--accent-bg);
+    color: var(--text);
 }
 
-body > header> nav {
+header h1 {
+    margin-top: 1rem;
+}
+
+nav {
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #FFFFFF;
-    border: 1px solid #FFFFFF;
+    background-color: var(--bg);
 }
 
-body > header> nav :not(:last-child)::after {
+nav :not(:last-child)::after {
     content: " | ";
 }
 
-body > nav {
+menu {
     margin-top: -2rem;
-    padding-bottom: 3rem;
-    background-color: #F3F3F3;
-    border: 0;
-    border-top: 2px solid #D0D0D0;
-    border-radius: 0;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-}
-
-body > nav ul {
+    color: var(--text);
     display: flex;
     flex-flow: row nowrap;
-}
-
-body > nav ul li {
-    flex-basis: 270px;
-    list-style: none;
-    text-align: center;
-    font-weight: bold;
-}
-
-body > article {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    margin-top: -2rem;
-    background-color: #FFFFFF;
-    border: 0;
-    border-top: 2px solid #D0D0D0;
-    border-radius: 0;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-}
-
-body > article header {
-    flex-basis: 100%;
-}
-
-body > article header h1 {
-    font-size: 3rem;
-}
-
-body > article > article {
-    flex-basis: 360px;
-    text-align: center;
-}
-
-a, a:hover, a:visited, a:active {
-    color: var(--text);
-    text-decoration: none;
-}
-
-body > article > article a {
-    display: block;
-    width: calc(100% - 1rem);
-    margin: 0.5rem;
-    border: 1px solid #D8D8D8;
-    border-radius: 1rem;
-    text-align: center;
-}
-
-body > article > article a h1,
-body > nav ul li p {
     font-size: 1.5rem;
 }
 
-body > article > article a p {
-    font-size: 2rem;
+menu li {
+    display: block;
+    cursor: pointer;
+
+    margin-left: -2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+
+    list-style: none;
+    text-align: center;
+    font-family: var(--mont-bold);
+
+    background: linear-gradient(180deg, var(--bg), var(--accent-light-bg));
+    border-top-left-radius: 2rem;
+    border-left: 1px solid var(--accent-bg);
 }
 
-body > article > article a p span {
-    font-size: 2.5rem;
+menu li:first-child {
+    margin-left: 0;
+}
+
+menu li:last-child {
+    padding-right: 0;
+    border-top-right-radius: 2rem;
+    border-right: 1px solid var(--accent-bg);
+}
+
+menu li:hover {
+    background-color: var(--bg);
+    background: linear-gradient(180deg, var(--bg), var(--bg));
+}
+
+main {
+    position: relative;
+    display: flex;
+    margin-top: -2rem;
+    padding: 2rem;
+    
+    border-radius: 0;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    border-top: 1px solid var(--accent-bg);
+    
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: var(--bg);
+}
+
+main h1 {
+    flex-basis: 100%;
+}
+
+article {
+    flex-basis: 33.33%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+div {
+    cursor: pointer;
+    display: block;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid var(--text-light);
+}
+
+div:hover {
+    background-color: var(--accent-hover-bg);
 }
 
 img {
@@ -169,47 +189,16 @@ img {
     max-width: 100%;
 }
 
-@media only screen and (max-width: 720px) {
-    body > nav ul li {
-        flex-basis: 180px;
-    }
-    body > article > article {
-        flex-basis: 240px;
-    }
+h1, p {
+    margin-bottom: 1rem;
 }
 
 @media only screen and (max-width: 400px) {
-    body > nav ul li {
-        flex-basis: 100px;
+    menu {
+        font-size: small;
     }
-    body > article > article {
-        flex-basis: 133.33px;
+    article {
+        flex-basis: 50%;
+        font-size: small;
     }
-}
-
-@media only screen and (max-width: 390px) {
-    body > nav ul li {
-        flex-basis: 97px;
-    }
-    body > article > article {
-        flex-basis: 130px;
-    }
-}
-
-@media only screen and (max-width: 375px) {
-    body > nav ul li {
-        flex-basis: 93px;
-    }
-    body > article > article {
-        flex-basis: 125px;
-    }
-}
-
-h1, img, p {
-    margin-bottom: 2rem;
-}
-
-h1 {
-    margin-left: 2rem;
-    margin-top: 2rem;
 }

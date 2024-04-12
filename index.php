@@ -1,3 +1,61 @@
+<?php
+
+class CoffeeShop
+{
+    static function route(string $uri): void
+    {
+        $name = preg_replace('#[^a-z]+#', ' ', trim($uri));
+
+        try
+        {
+            if (method_exists(static::class, $name))
+            {
+                http_response_code(200);
+                header("Content-type: application/json");
+                echo json_encode(static::{$name}());
+            }
+            else
+            {
+                http_response_code(404);
+            }
+        }
+        catch (\Throwable $ex)
+        {
+            http_response_code(500);
+        }
+
+        exit;
+    }
+
+    protected static function menu(): array
+    {
+        return [
+            [
+                "id" => "coffee"
+            ],
+            [
+                "id" => "tea"
+            ],
+            [
+                "id" => "milkshake"
+            ],
+            [
+                "id" => "fruit"
+            ]
+        ];
+    }
+
+    static function isAjax(): bool
+    {
+        return "xmlhttprequest"
+            === strtolower($_SERVER["HTTP_X_REQUESTED_WITH"] ?? "");
+    }
+}
+
+CoffeeShop::isAjax() && CoffeeShop::route($_SERVER["REQUEST_URI"]);
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -23,89 +81,69 @@
         
         </header>
         
-        <nav>
-        
-            <ul>
-        
-                <li>
-                    <a href="#coffee" title="Бодрящий кофе">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee.png" alt="Чашка эспрессо">
-                        <p>Кофе</p>
-                    </a>
-                </li>
-        
-                <li>
-                    <a href="#tea" title="Ароматный чай">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/tea.png" alt="Чай">
-                        <p>Чай</p>
-                    </a>
-                </li>
-        
-                <li>
-                    <a href="#milkshake" title="Пломбир и отборное молоко">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/milkshake.png" alt="Молочный коктейль">
-                        <p>Коктейли</p>
-                    </a>
-                </li>
-        
-                <li>
-                    <a href="#fruit" title="Фруктовая сладость">
-                        <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/fruit.png" alt="Фруктовый напиток">
-                        <p>Морсы</p>
-                    </a>
-                </li>
-        
-            </ul>
-        
-        </nav>
+        <menu>
 
-        <article id="coffee">
-
-            <header>        
-                <h1>Кофе</h1>
-            </header>
+            <li>
+                <img src="/assets/images/coffee.png" title="Бодрящий кофе" alt="Чашка эспрессо">
+                <p>Кофе</p>
+            </li>
+            
+            <li>
+                <img src="/assets/images/tea.png" title="Ароматный чай" alt="Чай">
+                <p>Чай</p>
+            </li>
+            
+            <li>
+                <img src="/assets/images/milkshake.png" title="Пломбир и отборное молоко" alt="Молочный коктейль">
+                <p>Молочные коктейли</p>
+            </li>
+            
+            <li>
+                <img src="/assets/images/fruit.png" title="Фруктовая сладость" alt="Фруктовый напиток">
+                <p>Морсы и газ. напитки</p>
+            </li>
         
-            <article>
+        </menu>
+
+        <main>
+
+            <h1>Кофе</h1>
                 
-                <a href="#cup" title="Эспрессо">
-                    <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
+            <article>
+                <div>
+                    <img src="/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
                     <h1>Эспрессо</h1>
                     <p>от <span>79₽</span></p>
-                </a>
-
+                </div>
             </article>
-
+            
             <article>
-                
-                <a href="#cup" title="Эспрессо 2x">
-                    <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/espresso.jpg" alt="Чашка эспрессо">
-                    <h1>Эспрессо 2x</h1>
+                <div>
+                    <img src="/assets/images/coffee/espresso.jpg" alt="Чашка двойного эспрессо">
+                    <h1>Эспрессо</h1>
                     <p>от <span>109₽</span></p>
-                </a>
-
+                </div>
             </article>
-
-            <article>
                 
-                <a href="#cup" title="Американо">
-                    <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/americano.jpg" alt="Чашка американо">
+            <article>
+                <div>
+                    <img src="/assets/images/coffee/americano.jpg" alt="Чашка американо">
                     <h1>Американо</h1>
                     <p>от <span>119₽</span></p>
-                </a>
-
+                </div>
             </article>
-        
-            <article>
                 
-                <a href="#cup" title="Латте">
-                    <img src="https://raw.githubusercontent.com/vadim-malashenko/coffee-shop/main/assets/images/coffee/latte.jpg" alt="Чашка латте">
-                    <h1>Латте</h1>
-                    <p>от <span>129₽</span></p>
-                </a>
-
+            <article>
+                <div>
+                    <img src="/assets/images/coffee/americano.jpg" alt="Чашка американо">
+                    <h1>Американо</h1>
+                    <p>от <span>119₽</span></p>
+                </div>
             </article>
 
-        </article>
+        </main>
+
+        <script src="/assets/scripts/index.js"></script>
 
     </body>
 
