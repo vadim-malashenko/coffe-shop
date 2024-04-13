@@ -185,7 +185,7 @@ menu li:last-child {
     border-right: 1px solid var(--accent-bg);
 }
 
-menu li:hover {
+menu li:hover, menu li[data-active="true"] {
     background-color: var(--bg);
     background: linear-gradient(180deg, var(--bg), var(--bg));
 }

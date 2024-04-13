@@ -99,14 +99,25 @@ class ShopPresenter extends Presenter
         this.view(`main`).on(`main.click`, this.onMainClick)
     }
 
-    onMenuClick(ev)
+    async onMenuClick(ev)
     {
         console.log(ev.detail.type)
+        await this.main(ev.detail.type)
     }
 
-    onMainClick(ev)
+    async onMainClick(ev)
     {
         console.log(ev.detail.name)
+    }
+
+    async menu(items)
+    {
+        this.view(`menu`).render({items})
+    }
+
+    async main(drinks)
+    {
+        this.view(`main`).render({drinks})
     }
 }
 
@@ -140,8 +151,8 @@ class MenuView extends View
 
     template = items =>
         items.map(
-            item => `
-                <li data-id="${item.id}">
+            (index, item) => `
+                <li data-id="${item.id}" data-active="${index === 1}">
                     <img src="${item.src}" title="${item.title}" alt="${item.alt}">
                     <p>${item.name}</p>
                 </li>
@@ -215,7 +226,7 @@ class CoffeeShop
 
         if (200 === response.status)
         {
-            this.#shop.view(`menu`).render({items: response.body})
+            this.#shop.menu(response.body)
         }
         else
         {
@@ -229,7 +240,7 @@ class CoffeeShop
 
         if (200 === response.status)
         {
-            this.#shop.view(`main`).render({drinks: response.body})
+            this.#shop.main(response.body)
         }
         else
         {
