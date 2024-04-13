@@ -99,11 +99,9 @@ class ShopPresenter extends Presenter
         this.view(`main`).on(`main.click`, this.onMainClick)
     }
 
-    select(index)
+    selectDrinkType(index)
     {
-        this.view(`menu`)
-            .querySelector(`:scope li:nth-child(${index})`)
-            .click()
+        this.view(`menu`).click()
     }
 
     async onMenuClick(ev)
@@ -242,7 +240,7 @@ class CoffeeShop
         if (200 === response.status)
         {
             this.#shop.menu(response.body)
-            this.#shop.select(0)
+            this.#shop.selectDrinkType(0)
         }
         else
         {
