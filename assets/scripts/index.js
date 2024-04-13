@@ -158,7 +158,7 @@ class MenuView extends View
 
     template = items =>
         items.map(
-            (index, item) => `
+            (item, index) => `
                 <li data-id="${item.id}" data-active="${index === 1}">
                     <img src="${item.src}" title="${item.title}" alt="${item.alt}">
                     <p>${item.name}</p>
