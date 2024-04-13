@@ -51,23 +51,20 @@ class DrinkService extends HttpService
 
 //#region Presentation
 
-class Presenter
+class Presenter extends Event
 {
     #view
 
     constructor(view)
     {
+        super()
+        
         this.#view = view
     }
 
     view(data)
     {
         this.#view.render(data)
-    }
-
-    on(type, handler)
-    {
-        this.#view.on(type, handler.bind(this))
     }
 }
 
@@ -77,13 +74,12 @@ class MenuPresenter extends Presenter
     {
         super(new MenuView())
 
-        this.on(`menu.click`, this.onMenuClick)
+        this.#view.on(`menu.click`, this.onMenuClick)
     }
 
     onMenuClick(ev)
     {
         console.log(ev.detail.type)
-
     }
 }
 
@@ -93,7 +89,7 @@ class MainPresenter extends Presenter
     {
         super(new MainView())
 
-        this.on(`main.click`, this.onMainClick)
+        this.#view.on(`main.click`, this.onMainClick)
     }
 
     onMainClick(ev)
@@ -102,7 +98,7 @@ class MainPresenter extends Presenter
     }
 }
 
-class View extends EventTarget
+class Event extends EventTarget
 {
     emit(type, detail)
     {
@@ -117,6 +113,14 @@ class View extends EventTarget
     off(type, handler)
     {
         this.addEventListener(type, handler)
+    }
+}
+
+class View extends Event
+{
+    constructor()
+    {
+        super()
     }
 }
 
