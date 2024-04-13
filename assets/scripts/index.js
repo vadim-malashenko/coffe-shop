@@ -102,7 +102,6 @@ class ShopPresenter extends Presenter
     async onMenuClick(ev)
     {
         console.log(ev.detail.type)
-        await this.main(ev.detail.type)
     }
 
     async onMainClick(ev)
