@@ -267,7 +267,7 @@ class CoffeeShop
         ev.target.CoffeeShop = app
 
         await app.menu(ev)
-        app.view(`menu`).setActive(`coffee`)
+        app.#shop.view(`menu`).setActive(`coffee`)
     }
 }
 
