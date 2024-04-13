@@ -191,7 +191,7 @@ class MainView extends View
 
     render(state)
     {
-        this.#element.innerHTML = this.template(state.items ?? []).join(``)
+        this.#element.innerHTML = this.template(state.drinks ?? []).join(``)
     }
 }
 
