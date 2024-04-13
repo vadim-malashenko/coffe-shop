@@ -99,14 +99,21 @@ class ShopPresenter extends Presenter
         this.view(`main`).on(`main.click`, this.onMainClick)
     }
 
+    select(index)
+    {
+        this.view(`menu`)
+            .querySelector(`:scope li:nth-child(${index})`)
+            .click()
+    }
+
     async onMenuClick(ev)
     {
-        console.log(ev.detail.type)
+        this.emit(`shop.menu`, ev.detail.type)
     }
 
     async onMainClick(ev)
     {
-        console.log(ev.detail.name)
+        this.emit(`shop.main`, ev.detail.drink)
     }
 
     async menu(items)
@@ -224,15 +231,18 @@ class CoffeeShop
         this.#drinkService = new DrinkService()
 
         this.#shop = new ShopPresenter()
+
+        this.#shop.on(`shop.menu`, this.main)
     }
 
-    async menu()
+    async menu(ev)
     {
         const response = await this.#drinkService.getDrinkTypes()
 
         if (200 === response.status)
         {
             this.#shop.menu(response.body)
+            this.#shop.menu.select(0)
         }
         else
         {
@@ -240,9 +250,9 @@ class CoffeeShop
         }
     }
 
-    async main(type)
+    async main(ev)
     {
-        const response = await this.#drinkService.getDrinksByType(type)
+        const response = await this.#drinkService.getDrinksByType(ev.detail.type)
 
         if (200 === response.status)
         {
@@ -260,8 +270,7 @@ class CoffeeShop
 
         ev.target.CoffeeShop = app
 
-        await app.menu()
-        await app.main(`coffee`)
+        await app.menu(ev)
     }
 }
 
