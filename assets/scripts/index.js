@@ -136,9 +136,10 @@ class MenuView extends View
     {
         super()
         
-        this.#element = document.createElement(`menu`)
-        container.appendChild(this.#element)
+        const element = document.createElement(`menu`)
+        container.appendChild(element)
 
+        this.#element = container.querySelector(`menu`)
         this.#element.addEventListener(
             `click`,
             ev => this.setActive(ev.target.closest(`li`))
@@ -151,9 +152,9 @@ class MenuView extends View
             .querySelector(`:scope li[data-active="true"]`)
             .dataset.active = false
 
-            this.#element
-                .querySelector(`:scope li[data-id="${id}"]`)
-                .dataset.active = true
+        this.#element
+            .querySelector(`:scope li[data-id="${id}"]`)
+            .dataset.active = true
 
         this.emit(`menu.click`, {type: id})
     }
