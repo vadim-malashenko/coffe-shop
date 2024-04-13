@@ -112,7 +112,6 @@ class ShopPresenter extends Presenter
     async menu(items)
     {
         this.view(`menu`).render({items})
-        this.view(`menu`).setActive(`coffee`)
     }
 
     async main(drinks)
@@ -268,6 +267,7 @@ class CoffeeShop
         ev.target.CoffeeShop = app
 
         await app.menu(ev)
+        app.view(`menu`).setActive(`coffee`)
     }
 }
 
