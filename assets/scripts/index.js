@@ -149,7 +149,7 @@ class MenuView extends View
                     .dataset.active = false
 
                 const li = ev.target.closest(`li`)
-                li.datset.active = true
+                li.dataset.active = true
 
                 this.emit(`menu.click`, {type: li.dataset.id})
             }
