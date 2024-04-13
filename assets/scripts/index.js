@@ -160,6 +160,11 @@ class MenuView extends View
         )
     }
 
+    click()
+    {
+        this.#element.click()
+    }
+
     template = items =>
         items.map(
             (item, index) => `
