@@ -51,6 +51,24 @@ class DrinkService extends HttpService
 
 //#region Presentation
 
+class Event extends EventTarget
+{
+    emit(type, detail)
+    {
+        this.dispatchEvent(new CustomEvent( type, {detail}))
+    }
+
+    on(type, handler)
+    {
+        this.addEventListener(type, handler.bind(this))
+    }
+
+    off(type, handler)
+    {
+        this.addEventListener(type, handler.bind(this))
+    }
+}
+
 class Presenter extends Event
 {
     #views
@@ -89,24 +107,6 @@ class ShopPresenter extends Presenter
     onMainClick(ev)
     {
         console.log(ev.detail.name)
-    }
-}
-
-class Event extends EventTarget
-{
-    emit(type, detail)
-    {
-        this.dispatchEvent(new CustomEvent( type, {detail}))
-    }
-
-    on(type, handler)
-    {
-        this.addEventListener(type, handler.bind(this))
-    }
-
-    off(type, handler)
-    {
-        this.addEventListener(type, handler.bind(this))
     }
 }
 
