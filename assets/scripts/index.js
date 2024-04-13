@@ -90,18 +90,13 @@ class ShopPresenter extends Presenter
 {
     constructor()
     {
-        super({
-            menu: new MenuView(),
-            main: new MainView()
-        })
+        const menu = new MenuView()
+        const main = new MainView()
+
+        super({menu, main})
 
         this.view(`menu`).on(`menu.click`, this.onMenuClick)
         this.view(`main`).on(`main.click`, this.onMainClick)
-    }
-
-    selectDrinkType(index)
-    {
-        this.view(`menu`).click()
     }
 
     async onMenuClick(ev)
@@ -146,25 +141,21 @@ class MenuView extends View
 
         this.#element.addEventListener(
             `click`,
-            ev =>
-            {
-                this.#element
-                    .querySelector(`:scope li[data-active="true"]`)
-                    .dataset.active = false
-
-                console.log(ev.target)
-                
-                const li = ev.target.closest(`li`)
-                li.dataset.active = true
-
-                this.emit(`menu.click`, {type: li.dataset.id})
-            }
+            ev => this.setActive(ev.target.closest(`li`))
         )
     }
 
-    click()
+    setActive(id)
     {
-        this.#element.click()
+        this.#element
+            .querySelector(`:scope li[data-active="true"]`)
+            .dataset.active = false
+
+            this.#element
+                .querySelector(`:scope li[data-id="${id}"]`)
+                .dataset.active = true
+
+        this.emit(`menu.click`, {type: id})
     }
 
     template = items =>
@@ -237,7 +228,7 @@ class CoffeeShop
 
         this.#shop = new ShopPresenter()
 
-        this.#shop.on(`shop.menu`, this.main)
+        this.#shop.on(`shop.menu`, ev => this.main(ev.detail.type))
     }
 
     async menu(ev)
@@ -247,7 +238,6 @@ class CoffeeShop
         if (200 === response.status)
         {
             this.#shop.menu(response.body)
-            this.#shop.selectDrinkType(0)
         }
         else
         {
