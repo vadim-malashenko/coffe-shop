@@ -142,10 +142,17 @@ class MenuView extends View
 
         this.#element.addEventListener(
             `click`,
-            ev => this.emit(
-                `menu.click`,
-                {type: ev.target.closest(`li`).dataset.id}
-            )
+            ev =>
+            {
+                this.#element
+                    .querySelector(`:scope li[data-active="true"]`)
+                    .dataset.active = false
+
+                const li = ev.target.closest(`li`)
+                li.datset.active = true
+
+                this.emit(`menu.click`, {type: li.dataset.id})
+            }
         )
     }
 
