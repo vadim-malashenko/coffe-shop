@@ -101,12 +101,12 @@ class ShopPresenter extends Presenter
 
     async onMenuClick(ev)
     {
-        this.emit(`shop.menu`, ev.detail.type)
+        this.emit(`shop.menu`, ev.detail)
     }
 
     async onMainClick(ev)
     {
-        this.emit(`shop.main`, ev.detail.drink)
+        this.emit(`shop.main`, ev.detail)
     }
 
     async menu(items)
