@@ -183,7 +183,7 @@ class MainView extends View
                     <div>
                         <img src="${drink.src}" alt="${drink.alt}">
                         <h1>${drink.name}</h1>
-                        <p><small>${drink.text}</small><strong>${drink.price}</strong></p>
+                        <p><small>от </small><strong>${drink.price}₽</strong></p>
                     </div>
                 </article>
             `
