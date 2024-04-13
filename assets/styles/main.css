@@ -213,32 +213,32 @@ main h1 {
     margin-bottom: 1rem;
 }
 
-section {
+article {
     display: flex;
     flex-basis: 33.33%;
     text-align: center;
     font-size: 1.5rem;
 }
 
-section h1 {
+article h1 {
     margin-top: 2rem;
     font-size: 2rem;
 }
 
-section p {
+article p {
     margin-bottom: 1.5rem;
 }
 
-section p {
+article p {
     font-family: var(--mont-bold);
     font-weight: normal;
 }
 
-section p small {
+article p small {
     font-size: 2.5rem;
 }
 
-section p strong {
+article p strong {
     font-size: 3.5rem;
 }
 
@@ -272,19 +272,19 @@ div:hover {
         font-size: small;
     }
 
-    section {
+    article {
         flex-basis: 50%;
     }
 
-    section h1 {
+    article h1 {
         font-size: 1rem;
     }
 
-    section p span:first-child {
+    article p span:first-child {
         font-size: 1.5rem;
     }
 
-    section p span:last-child {
+    article p span:last-child {
         font-size: 2rem;
     }
 }
