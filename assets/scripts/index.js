@@ -152,6 +152,8 @@ class MenuView extends View
                     .querySelector(`:scope li[data-active="true"]`)
                     .dataset.active = false
 
+                console.log(ev.target)
+                
                 const li = ev.target.closest(`li`)
                 li.dataset.active = true
 
