@@ -242,7 +242,7 @@ class CoffeeShop
         if (200 === response.status)
         {
             this.#shop.menu(response.body)
-            this.#shop.menu.select(0)
+            this.#shop.select(0)
         }
         else
         {
