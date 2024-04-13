@@ -229,7 +229,7 @@ class CoffeeShop
 
         this.#shop = new ShopPresenter()
 
-        this.#shop.on(`shop.menu`, ev => this.main(ev.detail.type))
+        this.#shop.on(`shop.menu`, this.main)
     }
 
     async menu(ev)
