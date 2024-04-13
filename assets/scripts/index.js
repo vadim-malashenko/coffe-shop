@@ -248,6 +248,8 @@ class CoffeeShop
 
     async main(ev)
     {
+        console.log(ev,detail)
+        
         const response = await this.#drinkService.getDrinksByType(ev.detail.type)
 
         if (200 === response.status)
