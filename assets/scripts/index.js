@@ -1,106 +1,5 @@
 //#region Data
 
-class Storage
-{
-    #storage
-
-    constructor(storage = null)
-    {
-        this.#storage = storage ?? {}
-    }
-
-    create(id, value)
-    {
-        this.#storage.setItem(id, value)
-    }
-
-    read(id)
-    {
-        this.#storage.getItem(id)
-    }
-
-    update(id, value)
-    {
-        this.create(id, value)
-    }
-
-    delete(id)
-    {
-        this.#storage.delete(id)
-    }
-}
-
-class LocalStorage extends Storage
-{
-    constructor()
-    {
-        super(localStorage)
-    }
-}
-
-class Repository
-{
-    #id
-    #storage
-
-    constructor(id, storage)
-    {
-        this.#id = id
-        this.#storage = storage
-
-        if (null === this.#storage.read(this.#id))
-        {
-            this.#storage.create(this.#id, {})
-        }
-    }
-
-    getAll()
-    {
-        const all = this.#storage.read(this.#id)
-
-        return `undefined` !== typeof all
-            ? all
-            : {}
-    }
-
-    get(id)
-    {
-        return this.getAll()[id] ?? null
-    }
-
-    find(fn)
-    {
-        const result = []
-        const all = this.getAll()
-
-        for (key in all)
-        {
-            if (fn(key, all[key]))
-            {
-                result.push(all[key])
-            }
-        }
-
-        return result.length ? result : null
-    }
-
-    set(id, value)
-    {
-        const next = this.#storage.read(this.#id)
-        next[id] = value
-
-        this.#storage.update(this.#id, next)
-    }
-
-    unset(id)
-    {
-        const next = this.#storage.read(this.#id)
-        delete next[id]
-
-        this.#storage.update(this.#id, next)
-    }
-}
-
 class HttpService
 {
     async get(url)
@@ -112,7 +11,7 @@ class HttpService
         {
             case 200:
                 const body = await request.json()
-                response.body = JSON.parse(body) ?? null
+                response.body = body ?? null
             break
 
             default:
@@ -126,60 +25,19 @@ class HttpService
 
 class DrinkService extends HttpService
 {
-    #types
-    #drinks
-
     constructor()
     {
         super()
-
-        this.#types  = new Repository(`types`, new LocalStorage())
-        this.#drinks = new Repository(`drinks`, new LocalStorage())
     }
 
     async getDrinkTypes()
     {
-        let types = this.#types.getAll()
-
-        if (0 < Object.keys(types).length)
-        {
-            return types
-        }
-
-        types = await this.get(`/drinks`)
-
-        if (0 < Object.keys(types).length)
-        {
-            for (id in types)
-            {
-                this.#types.set(id, types[id])
-            }
-        }
-
-        return types
+        return await this.get(`/drinks/`)
     }
 
-    async getDrinks(types)
+    async getDrinksByType(type)
     {
-        let drinks = this.#drinks.find(
-            (id, drink) => types.includes(drink.type)
-        )
-
-        if (null === drinks)
-        {
-            const params = new URLSearchParams()
-
-            params.append(`types`, types)
-
-            drinks = await this.get(`/drinks?${params}`)
-
-            for (id in drinks)
-            {
-                this.#drinks.set(id, drinks)
-            }
-        }
-
-        return drinks
+        return await this.get(`/drinks/${type}/`)
     }
 }
 
@@ -206,6 +64,11 @@ class Presenter
     {
         this.#view.render(data)
     }
+
+    on(type, handler)
+    {
+        this.#view.on(type, handler.bind(this))
+    }
 }
 
 class MenuPresenter extends Presenter
@@ -213,38 +76,122 @@ class MenuPresenter extends Presenter
     constructor()
     {
         super(new MenuView())
+
+        this.on(`menu.click`, this.onMenuClick)
+    }
+
+    onMenuClick(ev)
+    {
+        console.log(ev.detail.type)
+
     }
 }
 
-class View extends HTMLElement
+class MainPresenter extends Presenter
 {
-    constructor(name)
+    constructor()
     {
-        super()
+        super(new MainView())
 
-        this.tagName = name
+        this.on(`main.click`, this.onMainClick)
+    }
+
+    onMainClick(ev)
+    {
+        console.log(ev.detail.name)
+    }
+}
+
+class View extends EventTarget
+{
+    emit(type, detail)
+    {
+        this.dispatchEvent(new CustomEvent( type, {detail}))
+    }
+
+    on(type, handler)
+    {
+        this.addEventListener(type, handler)
+    }
+
+    off(type, handler)
+    {
+        this.addEventListener(type, handler)
     }
 }
 
 class MenuView extends View
 {
-    static li = item => `
-        <li>
-            <img src="${item.src}" title="${item.title}" alt="${item.alt}">
-            <p>${item.name}</p>
-        </li>
-    `
+    #element
 
-    static menu = items => items.map(item => MenuView.li(item)).join(``)
+    constructor(container = document.body)
+    {
+        super()
+        
+        this.#element = document.createElement(`menu`)
+        container.appendChild(this.#element)
+
+        this.#element.addEventListener(
+            `click`,
+            ev => this.emit(
+                `menu.click`,
+                {type: ev.target.closest(`li`).dataset.id}
+            )
+        )
+    }
+
+    template = items =>
+        items.map(
+            item => `
+                <li data-id="${item.id}">
+                    <img src="${item.src}" title="${item.title}" alt="${item.alt}">
+                    <p>${item.name}</p>
+                </li>
+            `
+        )
 
     render(state)
     {
-        this.innerHTML = this.template(state.items ?? [])
+        this.#element.innerHTML = this.template(state.items ?? []).join(``)
+    }
+}
+
+class MainView extends View
+{
+    #element
+
+    constructor(container = document.body)
+    {
+        super()
+        
+        this.#element = document.createElement(`main`)
+        container.appendChild(this.#element)
+
+        this.#element.addEventListener(
+            `click`,
+            ev => this.emit(
+                `main.click`,
+                {name: ev.target.closest(`article`).dataset.id}
+            )
+        )
     }
 
-    template(items)
+    template = drinks =>
+        drinks.map(
+            drink => `
+                <article data-id=${drink.id}>
+                    <div>
+                        <img src="${drink.src}" alt="${drink.alt}">
+                        <h1>${drink.name}</h1>
+                        <p><small>${drink.text}</small><strong>${drink.price}</strong></p>
+                    </div>
+                </article>
+            `
+        )
+
+    render(state)
     {
-        return MenuView.menu(items)
+        this.#element.innerHTML = this.template(state.items ?? []).join(``)
     }
 }
 
@@ -264,13 +211,35 @@ class CoffeeShop
         this.#drinkService = new DrinkService()
 
         this.#menu = new MenuPresenter()
+        this.#main = new MainPresenter()
     }
 
     async menu()
     {
-        const items = await this.#drinkService.getDrinkTypes()
-        
-        this.#menu.view({items})
+        const response = await this.#drinkService.getDrinkTypes()
+
+        if (200 === response.status)
+        {
+            this.#menu.view({items: response.body})
+        }
+        else
+        {
+            alert(`${response.status} ${response.body}`)
+        }
+    }
+
+    async main(type)
+    {
+        const response = await this.#drinkService.getDrinksByType(type)
+
+        if (200 === response.status)
+        {
+            this.#main.view({drinks: response.body})
+        }
+        else
+        {
+            alert(`${response.status} ${response.body}`)
+        }
     }
 
     static async load(ev)
@@ -280,6 +249,7 @@ class CoffeeShop
         ev.target.CoffeeShop = shop = new CoffeeShop()
 
         await shop.menu()
+        await shop.main(`coffee`)
     }
 }
 

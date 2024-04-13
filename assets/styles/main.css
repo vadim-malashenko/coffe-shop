@@ -144,7 +144,6 @@ nav :first-child {
 }
 
 menu {
-    margin-top: -2rem;
     color: var(--text);
     display: flex;
     flex-flow: row nowrap;
