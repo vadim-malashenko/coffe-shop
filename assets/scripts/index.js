@@ -112,6 +112,7 @@ class ShopPresenter extends Presenter
     async menu(items)
     {
         this.view(`menu`).render({items})
+        this.view(`menu`).setActive(`coffee`)
     }
 
     async main(drinks)
