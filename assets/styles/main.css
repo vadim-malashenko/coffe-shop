@@ -1,28 +1,22 @@
 @font-face { 
     font-family: MontSemiBold;
     src: url("../fonts/Mont/MontSemiBold.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 100;
 }
 
 @font-face { 
     font-family: MontRegular;
     src: url("../fonts/Mont/MontRegular.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 100;
 }
 
 @font-face { 
     font-family: MontThin;
     src: url("../fonts/Mont/MontThin.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 100;
 }
 
 :root, ::backdrop {
     --mont: MontRegular, -apple-system, BlinkMacSystemFont, sans-serif;
-    --mont-bold: MontSemiBold -apple-system, BlinkMacSystemFont, sans-serif;
-    --mont-light: MonoThin -apple-system, BlinkMacSystemFont, sans-serif;
+    --mont-bold: MontSemiBold, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mont-light: MontThin, -apple-system, BlinkMacSystemFont, sans-serif;
     --bg: #FFFFFF;
     --accent-bg: #CCB1A0;
     --accent-light-bg: #FFF4F0;
@@ -69,7 +63,7 @@ body {
     margin: 0 auto;
     font-family: var(--mont);
     font-size: 1rem;
-    font-weight: normal;
+    font-style: normal;
     line-height: 1;
     background-color: var(--accent-hover-bg);
     color: var(--text);
@@ -80,27 +74,73 @@ a, a:link, a:active, a:visited, a:hover {
     color: var(--text);
 }
 
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
 header {
-    padding: 1rem 1rem 3rem 1rem;
-    display: grid;
-    grid-template-columns: 1fr max-content;
+    padding: 3rem 2rem 6rem 2rem;
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
     background-color: var(--accent-bg);
     color: var(--text);
 }
 
 header h1 {
+    flex-grow: 2;
     margin-top: 1rem;
+    font-size: 3.5rem;
+    font-weight: lighter;
 }
 
 nav {
-    padding: 1rem;
-    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr 2fr;
+    align-items: center;
+    border-radius: 1.5rem;
     background-color: var(--bg);
 }
 
-nav :not(:last-child)::after {
-    content: " | ";
+nav button {
+    width: auto;
+    height: 1rem;
+    padding: 0 1rem;
+    background-color: var(--bg);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+nav :not(:first-child):hover {
+    color: var(--accent-text);
+}
+
+nav :not(:last-child) {
+    border-right: 1px solid var(--text-light);
+}
+
+nav :first-child:hover {
+    opacity: 0.75   ;
+}
+
+nav :last-child {
+    margin-right: 1rem;
+}
+
+nav :first-child {
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    border-radius: 1.5rem;
+    background-color: var(--accent-hover-bg);
+    background-image: url("/assets/images/call-out.png");
+    background-repeat: no-repeat;
+    background-position: 1.5rem 1.5rem;
+    padding: 0;
+    margin-right: 1rem;
 }
 
 menu {
@@ -108,7 +148,6 @@ menu {
     color: var(--text);
     display: flex;
     flex-flow: row nowrap;
-    font-size: 1.5rem;
 }
 
 menu li {
@@ -124,8 +163,17 @@ menu li {
     font-family: var(--mont-bold);
 
     background: linear-gradient(180deg, var(--bg), var(--accent-light-bg));
-    border-top-left-radius: 2rem;
+    border-top-left-radius: 1.5rem;
     border-left: 1px solid var(--accent-bg);
+}
+
+menu li::marker {
+    display: none;
+}
+
+menu li p {
+    width: 75%;
+    margin: 2rem auto;
 }
 
 menu li:first-child {
@@ -134,7 +182,7 @@ menu li:first-child {
 
 menu li:last-child {
     padding-right: 0;
-    border-top-right-radius: 2rem;
+    border-top-right-radius: 1.5rem;
     border-right: 1px solid var(--accent-bg);
 }
 
@@ -147,11 +195,11 @@ main {
     position: relative;
     display: flex;
     margin-top: -2rem;
-    padding: 2rem;
+    padding: 1rem;
     
     border-radius: 0;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
     border-top: 1px solid var(--accent-bg);
     
     flex-flow: row wrap;
@@ -161,12 +209,38 @@ main {
 
 main h1 {
     flex-basis: 100%;
+    font-weight: lighter;
+    font-size: 4rem;
+    margin-bottom: 1rem;
 }
 
-article {
+section {
+    display: flex;
     flex-basis: 33.33%;
     text-align: center;
     font-size: 1.5rem;
+}
+
+section h1 {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+section p {
+    margin-bottom: 1.5rem;
+}
+
+section p {
+    font-family: var(--mont-bold);
+    font-weight: normal;
+}
+
+section p small {
+    font-size: 2.5rem;
+}
+
+section p strong {
+    font-size: 3.5rem;
 }
 
 div {
@@ -183,22 +257,35 @@ div:hover {
     background-color: var(--accent-hover-bg);
 }
 
-img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-}
+@media only screen and (max-width: 390px)
+{
+    header {
+        flex-flow: column-reverse nowrap;
+        padding-bottom: 4rem;
+    }
 
-h1, p {
-    margin-bottom: 1rem;
-}
-
-@media only screen and (max-width: 400px) {
-    menu {
+    header h1 {
+        flex-grow: 1;
+        margin-top: 2rem;
+    }
+    
+    nav {
         font-size: small;
     }
-    article {
+
+    section {
         flex-basis: 50%;
-        font-size: small;
+    }
+
+    section h1 {
+        font-size: 1rem;
+    }
+
+    section p span:first-child {
+        font-size: 1.5rem;
+    }
+
+    section p span:last-child {
+        font-size: 2rem;
     }
 }
