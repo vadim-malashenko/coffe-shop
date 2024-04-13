@@ -53,43 +53,37 @@ class DrinkService extends HttpService
 
 class Presenter extends Event
 {
-    #view
+    #views
 
-    constructor(view)
+    constructor(views)
     {
         super()
         
-        this.#view = view
+        this.#views = views
     }
 
-    view(data)
+    view(id)
     {
-        this.#view.render(data)
+        return this.#views[id] ?? null
     }
 }
 
-class MenuPresenter extends Presenter
+class ShopPresenter extends Presenter
 {
     constructor()
     {
-        super(new MenuView())
+        super({
+            menu: new MenuView(),
+            main: new MainView()
+        })
 
-        this.#view.on(`menu.click`, this.onMenuClick)
+        this.view(`menu`).on(`menu.click`, this.onMenuClick)
+        this.view(`main`).on(`main.click`, this.onMainClick)
     }
 
     onMenuClick(ev)
     {
         console.log(ev.detail.type)
-    }
-}
-
-class MainPresenter extends Presenter
-{
-    constructor()
-    {
-        super(new MainView())
-
-        this.#view.on(`main.click`, this.onMainClick)
     }
 
     onMainClick(ev)
@@ -107,12 +101,12 @@ class Event extends EventTarget
 
     on(type, handler)
     {
-        this.addEventListener(type, handler)
+        this.addEventListener(type, handler.bind(this))
     }
 
     off(type, handler)
     {
-        this.addEventListener(type, handler)
+        this.addEventListener(type, handler.bind(this))
     }
 }
 
@@ -206,16 +200,13 @@ class CoffeeShop
 {
     #drinkService
 
-    #header
-    #menu
-    #main
+    #shop
 
     constructor()
     {
         this.#drinkService = new DrinkService()
 
-        this.#menu = new MenuPresenter()
-        this.#main = new MainPresenter()
+        this.#shop = new ShopPresenter()
     }
 
     async menu()
@@ -224,7 +215,7 @@ class CoffeeShop
 
         if (200 === response.status)
         {
-            this.#menu.view({items: response.body})
+            this.#shop.view(`menu`).render({items: response.body})
         }
         else
         {
@@ -238,7 +229,7 @@ class CoffeeShop
 
         if (200 === response.status)
         {
-            this.#main.view({drinks: response.body})
+            this.#shop.view(`main`).render({drinks: response.body})
         }
         else
         {
@@ -248,12 +239,12 @@ class CoffeeShop
 
     static async load(ev)
     {
-        let shop
+        const app = new CoffeeShop()
 
-        ev.target.CoffeeShop = shop = new CoffeeShop()
+        ev.target.CoffeeShop = app
 
-        await shop.menu()
-        await shop.main(`coffee`)
+        await app.menu()
+        await app.main(`coffee`)
     }
 }
 
