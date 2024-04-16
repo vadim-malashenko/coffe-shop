@@ -215,7 +215,6 @@ main h1 {
 }
 
 article {
-    display: flex;
     flex-basis: 33.33%;
     text-align: center;
     font-size: 1.5rem;
