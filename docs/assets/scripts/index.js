@@ -13,46 +13,6 @@ class Http
     }
 }
 
-class Router
-{
-    #routes
-
-    constructor(routes)
-    {
-        this.#routes = routes
-
-        setInterval(this.test.bind(this), 50)
-    }
-
-    test()
-    {
-        const hash = location.href.match(/#(.*)$/)
-        const url = null !== hash
-            ? hash[1].replace(/^/|/$/,'')
-            : null
-        
-        const route = this.getRoute(url)
-
-        if (null !== route)
-        {
-            route(url)
-        }
-    }
-
-    getRoute(url)
-    {
-        for (let i, route; route = this.#routes[i]; i++)
-        {
-            if (route[0].test(url))
-            {
-                route[1]
-            }
-        }
-
-        return null
-    }
-}
-
 class Event extends EventTarget
 {
     emit(type, detail)
@@ -73,6 +33,92 @@ class Event extends EventTarget
     static create(type, detail)
     {
         return new CustomEvent(type, {detail})
+    }
+}
+
+class Router
+{
+    #routes = []
+    #current = null
+    #next = null
+    #handled = false
+    #listen = false
+
+    constructor (routes) {
+
+        this.addRoutes (routes)
+    }
+
+    addRoutes (routes) {
+
+        Array.isArray (routes)
+
+        &&
+
+        routes.forEach (route =>
+
+            route.length == 2
+            && route [0].constructor.name == 'RegExp'
+            && typeof route [1] == 'function'
+
+            && this.#routes.push (route)
+        )
+    }
+
+    listen () {
+
+        this.#listen && this.stop ()
+        this.start ()
+        return this
+    }
+
+    check (ev) {
+
+        this.#next = Router.hash ()
+
+        if (this.#next !== null && this.#current !== this.#next) {
+
+            this.#handled = false
+
+            this.#routes.forEach (route =>
+
+                ! this.#handled
+                && route [0].test (this.#next)
+
+                && (
+                    this.#handled = true,
+                    this.#current = this.#next,
+                    route[1](this.#current)
+                )
+            )
+        }
+    }
+
+    start () {
+
+        addEventListener ('popstate', this.check)
+        this.#listen = true
+    }
+
+    stop () {
+
+        removeEventListener ('popstate', this.check)
+        this.#listen = false
+    }
+
+    static hash () {
+
+        const matches = location.href.match (/#(.*)$/)
+
+        return matches !== null
+
+            ? matches [1].replace (/^\/|\/$/, '')
+            : null
+    }
+
+    static navigate (hash) {
+
+        location.href = (`${location.href.replace (/#(.*)$/, '')}#${hash}`)
     }
 }
 
@@ -151,7 +197,6 @@ class Main extends Event
 
 class App extends Http
 {
-    #router
     #menu
     #main
 
@@ -159,26 +204,21 @@ class App extends Http
     {
         super()
 
-        this.#router = new Router([
-            [`coffee`, console.log],
-            [`tea`, console.log],
-            [`404`, console.warn]
-        ])
-
         this.setMenu()
             .then(r => {
                 const type = this.#menu.getType()
                 window.history.pushState({}, location.href + `#${type}`)
                 this.setMain(type)
-                this.#menu.on(`menu.click`, this.onMenuClick.bind(this))
+                this.#menu.on(`menu.click`, ev => Router.navigate(ev.detail.type))
+                Router.navigate(type)
             })
     }
 
-    async onMenuClick(ev)
+    async update(type)
     {
-        console.log(ev.detail)
+        console.log(type)
 
-        const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${ev.detail.type}.json`)
+        const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
 
         this.#main.update(main)
     }
@@ -199,7 +239,12 @@ class App extends Http
 
     static async load(ev)
     {
-        window.App = new App()
+        const app = new App()
+
+        new Router ([
+            [/^(coffee|tea)\/*$/, app.update],
+            [/^.*$/, app.not_found]
+        ]).listen()
 
         console.log(ev.target)
     }
