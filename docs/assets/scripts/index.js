@@ -204,15 +204,15 @@ class App extends Http
     {
         super()
 
+        new Router([
+            [/^(coffee|tea)\/*$/, this.update.bind(this)],
+            [/^.*$/, alert]
+        ]).listen()
+
         this.setMenu()
             .then(r => {
-                new Router([
-                    [/^(coffee|tea)\/*$/, this.update.bind(this)],
-                    [/^.*$/, alert]
-                ]).listen()
-                const type = this.#menu.getType()
                 this.#menu.on(`menu.click`, ev => Router.navigate(ev.detail.type))
-                Router.navigate(type)
+                Router.navigate(this.#menu.getType())
             })
     }
 
