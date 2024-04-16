@@ -168,6 +168,7 @@ class Menu extends Event
 class Main extends Event
 {
     #root
+    #element
 
     constructor(selector, data)
     {
@@ -175,13 +176,12 @@ class Main extends Event
 
         this.#root = document.querySelector(selector)
         this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
+        this.#element = this.#root.querySelector(`:scope main`)
     }
 
     update(data)
     {
-        const main = this.#root.querySelector(`:scope main`)
-        this.#root.remove(main)
-        this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
+        this.#element.innerHTML = this.render(data)
     }
 
     render(data)
