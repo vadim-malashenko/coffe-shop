@@ -1,0 +1,20 @@
+[
+    {
+        "id": "espresso",
+        "name": "Эспрессо",
+        "img": {
+            "src": "coffee/espresso.jpg",
+            "alt": "Чашка эспрессо"
+        },
+        "price": 79
+    },
+    {
+        "id": "americano",
+        "name": "Американо",
+        "img": {
+            "src": "americano.jpg",
+            "alt": "Чашка американо"
+        },
+        "price": 119
+    }
+]
