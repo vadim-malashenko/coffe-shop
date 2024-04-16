@@ -39,6 +39,7 @@ class Event extends EventTarget
 class Menu extends Event
 {
     #root
+    #element
 
     constructor(selector, data)
     {
@@ -47,8 +48,9 @@ class Menu extends Event
         this.#root = document.querySelector(selector)
         this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
 
-        document.querySelector(`menu`)
-            .addEventListener(`click`, this.onClick.bind(this))
+        this.#element = this.#root.querySelector(`:scope menu`)
+        
+        this.#element.addEventListener(`click`, this.onClick.bind(this))
     }
 
     async onClick(ev)
@@ -56,6 +58,8 @@ class Menu extends Event
         const li = `li` === ev.target.tagName
             ? ev.target
             : ev.target.closest(`li`)
+        
+        li.parentNode.dataset.type = li.dataset.id
         
         this.emit(`menu.click`, {type: li.dataset.id})
     }
@@ -66,7 +70,12 @@ class Menu extends Event
         const img = item => `<img src="/coffee-shop/docs/assets/images/${item.img.src}" alt="${item.img.alt}">`
         const li = item => `<li data-id="${item.id}">${img(item)}${name(item)}</li>`
 
-        return `<menu>${[...data].map(li).join(``)}</menu>`
+        return `<menu data-type="${data[0].id}">${[...data].map(li).join(``)}</menu>`
+    }
+
+    getType()
+    {
+        return this.#element.dataset.type
     }
 }
 
@@ -79,6 +88,13 @@ class Main extends Event
         super()
 
         this.#root = document.querySelector(selector)
+        this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
+    }
+
+    update(data)
+    {
+        const main = this.#root.querySelector(`:scope main`)
+        this.#root.remove(main)
         this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
     }
 
@@ -96,12 +112,14 @@ class Main extends Event
 class App extends Http
 {
     #menu
+    #main
 
     constructor()
     {
         super()
 
         this.setMenu()
+        this.setMain(this.#menu.getType())
 
         this.#menu.on(`menu.click`, this.onMenuClick.bind(this))
     }
@@ -110,7 +128,9 @@ class App extends Http
     {
         console.log(ev.detail)
 
-        this.setMain(ev.detail.type)
+        const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${ev.detail.type}.json`)
+
+        this.#main.update(main)
     }
 
     async setMenu()
