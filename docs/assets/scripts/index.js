@@ -206,7 +206,7 @@ class App extends Http
 
         new Router([
             [/^(coffee|tea)\/*$/, this.update.bind(this)],
-            [/^.*$/, alert]
+            [/^.*$/, console.warn]
         ]).listen()
 
         this.setMenu()
