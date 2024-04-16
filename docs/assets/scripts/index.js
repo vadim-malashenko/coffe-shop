@@ -216,8 +216,6 @@ class App extends Http
 
     async update(type)
     {
-        console.log(type)
-
         const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
 
         this.#main.update(main)
@@ -241,12 +239,11 @@ class App extends Http
     {
         const app = new App()
 
-        new Router ([
-            [/^(coffee|tea)\/*$/, app.update],
+        new Router([
+            [/^(coffee|tea)\/*$/, app.update.bind(app)],
             [/^.*$/, app.not_found]
-        ]).listen()
-
-        console.log(ev.target)
+        ])
+            .listen()
     }
 }
 
