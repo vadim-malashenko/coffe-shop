@@ -46,13 +46,25 @@ class Menu extends Event
 
         this.#root = document.querySelector(selector)
         this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
+
+        document.querySelector(`menu`)
+            .addEventListener(`click`, this.onClick.bind(this))
+    }
+
+    async onClick(ev)
+    {
+        const li = `li` === ev.target.tagName
+            ? ev.target
+            : ev.target.closest(`li`)
+        
+        this.emit(`menu.click`, {type: li.dataset.id})
     }
 
     render(data)
     {
         const name = item => `<p>${item.name}</p>`
         const img = item => `<img src="/coffee-shop/docs/assets/images/${item.img.src}" alt="${item.img.alt}">`
-        const li = item => `<li>${img(item)}${name(item)}</li>`
+        const li = item => `<li data-id="${item.id}">${img(item)}${name(item)}</li>`
 
         return `<menu>${[...data].map(li).join(``)}</menu>`
     }
@@ -90,7 +102,15 @@ class App extends Http
         super()
 
         this.setMenu()
-        this.setMamain(`coffee`)
+
+        this.#menu.on(`menu.click`, this.onMenuClick.bind(this))
+    }
+
+    async onMenuClick(ev)
+    {
+        console.log(ev.detail)
+
+        this.setMain(ev.detail.type)
     }
 
     async setMenu()
