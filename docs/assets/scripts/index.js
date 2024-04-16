@@ -13,6 +13,46 @@ class Http
     }
 }
 
+class Router
+{
+    #routes
+
+    constructor(routes)
+    {
+        this.#routes = routes
+
+        setInterval(this.test.bind(this), 50)
+    }
+
+    test()
+    {
+        const hash = location.href.match(/#(.*)$/)
+        const url = null !== hash
+            ? hash[1].replace(/^/|/$/,'')
+            : null
+        
+        const route = this.getRoute(url)
+
+        if (null !== route)
+        {
+            route(url)
+        }
+    }
+
+    getRoute(url)
+    {
+        for (let i, route; route = this.#routes[i]; i++)
+        {
+            if (route[0].test(url))
+            {
+                route[1]
+            }
+        }
+
+        return null
+    }
+}
+
 class Event extends EventTarget
 {
     emit(type, detail)
@@ -111,6 +151,7 @@ class Main extends Event
 
 class App extends Http
 {
+    #router
     #menu
     #main
 
@@ -118,9 +159,17 @@ class App extends Http
     {
         super()
 
+        this.#router = new Router([
+            [`coffee`, console.log],
+            [`tea`, console.log],
+            [`404`, console.warn]
+        ])
+
         this.setMenu()
             .then(r => {
-                this.setMain(this.#menu.getType())
+                const type = this.#menu.getType()
+                window.history.pushState({}, location.href + `#${type}`)
+                this.setMain(type)
                 this.#menu.on(`menu.click`, this.onMenuClick.bind(this))
             })
     }
