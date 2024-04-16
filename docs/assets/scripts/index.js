@@ -181,8 +181,6 @@ class Main extends Event
 
     update(data)
     {
-
-        console.log(this.#element)
         this.#element.innerHTML = this.render(data)
     }
 
@@ -222,15 +220,13 @@ class App extends Http
     {
         const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
 
-        console.log(typeof this.#main)
-
         if (`undefined` != typeof this.#main)
         {
             this.#main.update(main.body)
         }
         else
         {
-            this.#menu = new Main(`body`, main.body)
+            this.#main = new Main(`body`, main.body)
         }
     }
 
