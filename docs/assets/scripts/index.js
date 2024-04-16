@@ -176,7 +176,7 @@ class Main extends Event
 
         this.#root = document.querySelector(selector)
         this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
-        this.#element = document.querySelector(`${selector} main`)
+        this.#element = document.querySelector(`main`)
     }
 
     update(data)
