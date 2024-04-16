@@ -145,6 +145,7 @@ nav :first-child {
 
 menu {
     color: var(--text);
+    margin-top: -2rem;
     display: flex;
     flex-flow: row nowrap;
 }
@@ -161,7 +162,7 @@ menu li {
     text-align: center;
     font-family: var(--mont-bold);
 
-    background: linear-gradient(180deg, var(--bg), var(--accent-light-bg));
+    background: linear-gradient(180deg, var(--accent-light-bg), var(--bg));
     border-top-left-radius: 1.5rem;
     border-left: 1px solid var(--accent-bg);
 }
