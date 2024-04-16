@@ -243,7 +243,7 @@ class App extends Http
 
     static async load(ev)
     {
-        ev.target.app = new App()
+        window.app = new App()
     }
 }
 
