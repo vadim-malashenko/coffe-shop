@@ -63,13 +63,13 @@ class App extends Http
     constructor()
     {
         super()
-        
+
         this.setMenu()
     }
 
     async setMenu()
     {
-        const menu = await get(`/coffee-shop/docs/assets/data/drinks.json`)
+        const menu = await this.get(`/coffee-shop/docs/assets/data/drinks.json`)
         this.#menu = new Menu(`body`, menu)
     }
 

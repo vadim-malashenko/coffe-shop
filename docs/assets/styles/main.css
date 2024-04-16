@@ -136,7 +136,7 @@ nav :first-child {
     border: none;
     border-radius: 1.5rem;
     background-color: var(--accent-hover-bg);
-    background-image: url("/assets/images/call-out.png");
+    background-image: url("../images/call-out.png");
     background-repeat: no-repeat;
     background-position: 1.5rem 1.5rem;
     padding: 0;
