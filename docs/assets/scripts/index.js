@@ -224,7 +224,7 @@ class App extends Http
 
         console.log(typeof this.#main)
 
-        if (`undefined` !== typeof this.#main)
+        if (`undefined` != typeof this.#main)
         {
             this.#main.update(main.body)
         }
