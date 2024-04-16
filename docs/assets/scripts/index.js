@@ -181,6 +181,8 @@ class Main extends Event
 
     update(data)
     {
+
+        console.log(this.#element)
         this.#element.innerHTML = this.render(data)
     }
 
@@ -219,6 +221,8 @@ class App extends Http
     async update(type)
     {
         const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
+
+        console.log(typeof this.#main)
 
         if (`undefined` !== typeof this.#main)
         {
