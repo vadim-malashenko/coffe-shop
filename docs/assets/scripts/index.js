@@ -70,9 +70,8 @@ class App extends Http
     async setMenu()
     {
         const menu = await this.get(`/coffee-shop/docs/assets/data/drinks.json`)
-        console.log(menu)
-        
-        this.#menu = new Menu(`body`, menu)
+
+        this.#menu = new Menu(`body`, menu.body)
     }
 
     static async load(ev)
