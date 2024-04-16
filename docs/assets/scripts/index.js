@@ -90,7 +90,7 @@ class App extends Http
         super()
 
         this.setMenu()
-        this.setMenu()
+        this.setMamain(`coffee`)
     }
 
     async setMenu()
