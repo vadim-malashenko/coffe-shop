@@ -1,0 +1,290 @@
+@font-face { 
+    font-family: MontSemiBold;
+    src: url("../fonts/Mont/MontSemiBold.ttf") format("truetype");
+}
+
+@font-face { 
+    font-family: MontRegular;
+    src: url("../fonts/Mont/MontRegular.ttf") format("truetype");
+}
+
+@font-face { 
+    font-family: MontThin;
+    src: url("../fonts/Mont/MontThin.ttf") format("truetype");
+}
+
+:root, ::backdrop {
+    --mont: MontRegular, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mont-bold: MontSemiBold, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mont-light: MontThin, -apple-system, BlinkMacSystemFont, sans-serif;
+    --bg: #FFFFFF;
+    --accent-bg: #CCB1A0;
+    --accent-light-bg: #FFF4F0;
+    --accent-hover-bg: #F5D009;
+    --text: #131313;
+    --text-light: #776E71;
+    --border: #907966;
+    --accent: #1C1413;
+    --accent-hover: #4C4443;
+    --accent-text: #434343;
+    --disabled: #F1E2D1;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root, ::backdrop {
+        color-scheme: dark;
+        --bg: #131313;
+        --accent-bg: #2b2b2b;
+        --text: #dcdcdc;
+        --text-light: #ababab;
+        --accent: #ffb300;
+        --accent-hover: #ffe099;
+        --accent-text: var(--bg);
+        --code: #f06292;
+        --preformatted: #ccc;
+        --disabled: #111;
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--sans-font);
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    font-family: var(--mont);
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1;
+    background-color: var(--accent-hover-bg);
+    color: var(--text);
+}
+
+a, a:link, a:active, a:visited, a:hover {
+    text-decoration: none;
+    color: var(--text);
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+header {
+    padding: 3rem 2rem 6rem 2rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: var(--accent-bg);
+    color: var(--text);
+}
+
+header h1 {
+    flex-grow: 2;
+    margin-top: 1rem;
+    font-size: 3.5rem;
+    font-weight: lighter;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: auto 1fr 2fr;
+    align-items: center;
+    border-radius: 1.5rem;
+    background-color: var(--bg);
+}
+
+nav button {
+    width: auto;
+    height: 1rem;
+    padding: 0 1rem;
+    background-color: var(--bg);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+nav :not(:first-child):hover {
+    color: var(--accent-text);
+}
+
+nav :not(:last-child) {
+    border-right: 1px solid var(--text-light);
+}
+
+nav :first-child:hover {
+    opacity: 0.75   ;
+}
+
+nav :last-child {
+    margin-right: 1rem;
+}
+
+nav :first-child {
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    border-radius: 1.5rem;
+    background-color: var(--accent-hover-bg);
+    background-image: url("/assets/images/call-out.png");
+    background-repeat: no-repeat;
+    background-position: 1.5rem 1.5rem;
+    padding: 0;
+    margin-right: 1rem;
+}
+
+menu {
+    color: var(--text);
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+menu li {
+    display: block;
+    cursor: pointer;
+
+    margin-left: -2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+
+    list-style: none;
+    text-align: center;
+    font-family: var(--mont-bold);
+
+    background: linear-gradient(180deg, var(--bg), var(--accent-light-bg));
+    border-top-left-radius: 1.5rem;
+    border-left: 1px solid var(--accent-bg);
+}
+
+menu li::marker {
+    display: none;
+}
+
+menu li p {
+    width: 75%;
+    margin: 2rem auto;
+}
+
+menu li:first-child {
+    margin-left: 0;
+}
+
+menu li:last-child {
+    padding-right: 0;
+    border-top-right-radius: 1.5rem;
+    border-right: 1px solid var(--accent-bg);
+}
+
+menu li:hover {
+    background-color: var(--bg);
+    background: linear-gradient(180deg, var(--bg), var(--bg));
+}
+
+main {
+    position: relative;
+    display: flex;
+    margin-top: -2rem;
+    padding: 1rem;
+    
+    border-radius: 0;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    border-top: 1px solid var(--accent-bg);
+    
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: var(--bg);
+}
+
+main h1 {
+    flex-basis: 100%;
+    font-weight: lighter;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+section {
+    display: flex;
+    flex-basis: 33.33%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+section h1 {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+section p {
+    margin-bottom: 1.5rem;
+}
+
+section p {
+    font-family: var(--mont-bold);
+    font-weight: normal;
+}
+
+section p small {
+    font-size: 2.5rem;
+}
+
+section p strong {
+    font-size: 3.5rem;
+}
+
+div {
+    cursor: pointer;
+    display: block;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid var(--text-light);
+}
+
+div:hover {
+    background-color: var(--accent-hover-bg);
+}
+
+@media only screen and (max-width: 390px)
+{
+    header {
+        flex-flow: column-reverse nowrap;
+        padding-bottom: 4rem;
+    }
+
+    header h1 {
+        flex-grow: 1;
+        margin-top: 2rem;
+    }
+    
+    nav {
+        font-size: small;
+    }
+
+    section {
+        flex-basis: 50%;
+    }
+
+    section h1 {
+        font-size: 1rem;
+    }
+
+    section p span:first-child {
+        font-size: 1.5rem;
+    }
+
+    section p span:last-child {
+        font-size: 2rem;
+    }
+}
