@@ -52,9 +52,11 @@ class Menu extends Event
     {
         console.log(data)
 
-        return `<menu>
-            ${[...data].map(item => `<li><img src="/coffee-shop/docs/assets/images/${item.src}"></li>`)}
-        </menu>`
+        const name = item => `<p>${item.name}</p>`
+        const img = item => `<img src="/coffee-shop/docs/assets/images/${item.img.src}" alt="${item.img.alt}">`
+        const li = item => `<li>${img(item)}${name(item)}</li>`
+
+        return `<menu>${[...data].map(li).join(``)}</menu>`
     }
 }
 
