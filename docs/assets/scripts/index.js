@@ -96,13 +96,13 @@ class Router
 
     start () {
 
-        addEventListener ('popstate', this.check)
+        addEventListener ('popstate', this.check.bind(this))
         this.#listen = true
     }
 
     stop () {
 
-        removeEventListener ('popstate', this.check)
+        removeEventListener ('popstate', this.check.bind(this))
         this.#listen = false
     }
 
