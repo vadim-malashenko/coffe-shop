@@ -1,0 +1,18 @@
+[
+    {
+        "id": "coffee",
+        "name": "Кофе",
+        "img": {
+            "src": "coffee.png",
+            "alt": "Чашка кофе"
+        }
+    },
+    {
+        "id": "tea",
+        "name": "Чай",
+        "img": {
+            "src": "tea.png",
+            "alt": "Чашка чая"
+        }
+    }
+]
