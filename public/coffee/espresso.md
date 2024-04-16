@@ -1,6 +1,6 @@
 ---
 type: "coffee"
-type: "Espresso"
+name: "Espresso"
 price: 79
 src: ""
 ---

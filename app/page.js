@@ -9,38 +9,50 @@ export const metadata = {
   description: "Coffee Shop",
 };
 
-export async function getDrinks()
+export async function getMenu()
 {
-  const entries = await readdir("./public/", { withFileTypes: true })
+  const entries = await readdir(`./public/`, { withFileTypes: true })
 
-  const drinkTypes = entries
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-  console.log(drinkTypes)
+  const files = entries
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name.replace(/\.md$/, ``))
   
-  const fileContents = await Promise.all(
-    drinkTypes.map(async (type) => {
-      const entries2 = await readdir(`./public/${type}/`, { withFileTypes: true })
-
-      console.log(entries2)
-      const drinkNames = entries2
-        .filter((entry) => entry.isFile())
-        .forEach((name) => readFile(`./public/${type}/${name}.md`, "utf8"))
-    })
+  const contents = await Promise.all(
+    files.map(name => readFile(`./public/${name}.md`, "utf8"))
   )
 
-  console.log(fileContents)
+  const menu = files.map((slug, i) => {
+    const content = contents[i]
+    const { data } = matter(content)
+    return { slug, ... data }
+  })
 
-  const drinks = drinkTypes.map((slug, i) =>
-  {
-    const fileContent = fileContents[i]
-    const { data } = matter(fileContent)
-    return { slug, ...data }
+  console.log(menu)
+
+  return menu
+}
+
+export async function getDrinks(type)
+{
+  const entries = await readdir(`./public/${type}`, { withFileTypes: true })
+
+  const files = entries
+    .filter((entry) => entry.isFile())
+    .map(entry => entry.name)
+
+  const contents = await Promise.all(
+    files.map(name => readFile(`./public/${type}/${name}`, "utf8"))
+  )
+
+  const drinks = files.map((slug, i) => {
+    const content = contents[i]
+    const { data } = matter(content)
+    return { data }
   })
 
   drinks.sort((a, b) =>
   {
-    return Date.parse(a.price) < Date.parse(b.price) ? 1 : -1;
+    return a.price < b.price ? 1 : -1;
   })
 
   return drinks
@@ -48,24 +60,21 @@ export async function getDrinks()
 
 export default async function Home()
 {
-  const drinks = await getDrinks()
+  const menu = await getMenu()
 
   return (
-    <div>
-      {drinks.map((drink) => (
-        <Link
-          key={drink.slug}
-          href={"/" + drink.slug + "/"}
-        >
-          <article>
-            <DrinkImage drink={drink} />
-            <DrinkName drink={drink} />
-            <DrinkPrice drink={drink} />
-          </article>
-        </Link>
-      ))}
-    </div>
-  );
+      menu.map((item) => (
+        <li>
+          <a 
+            key={item.slug}
+            href={"/" + item.slug + "/"}
+          >
+            <DrinkImage drink={item} />
+            <DrinkName drink={item} />
+          </a>
+        </li>
+    )
+  ))
 }
 
 function DrinkName({ drink })
