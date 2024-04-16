@@ -19,7 +19,7 @@
         "id": "milkshake",
         "name": "Молочный коктейль",
         "img": {
-            "src": "milshake.png",
+            "src": "milkshake.png",
             "alt": "Чашка молочного коктейля"
         }
     },

@@ -10,6 +10,7 @@
     },
     {
         "id": "americano",
+        "type": "coffee",
         "name": "Американо",
         "img": {
             "src": "americano.jpg",

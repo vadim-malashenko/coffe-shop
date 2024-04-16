@@ -50,13 +50,34 @@ class Menu extends Event
 
     render(data)
     {
-        console.log(data)
-
         const name = item => `<p>${item.name}</p>`
         const img = item => `<img src="/coffee-shop/docs/assets/images/${item.img.src}" alt="${item.img.alt}">`
         const li = item => `<li>${img(item)}${name(item)}</li>`
 
         return `<menu>${[...data].map(li).join(``)}</menu>`
+    }
+}
+
+class Main extends Event
+{
+    #root
+
+    constructor(selector, data)
+    {
+        super()
+
+        this.#root = document.querySelector(selector)
+        this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
+    }
+
+    render(data)
+    {
+        const name = item => `<h1>${item.name}</h1>`
+        const price = item => `<p><small>от </small><strong>${item.price}</strong></p>`
+        const img = item => `<img src="/coffee-shop/docs/assets/images/${item.type}/${item.img.src}" alt="${item.img.alt}">`
+        const article = item => `<article>${img(item)}${name(item)}${price(item)}</article>`
+
+        return `<main>${[...data].map(article).join(``)}</main>`
     }
 }
 
@@ -69,6 +90,7 @@ class App extends Http
         super()
 
         this.setMenu()
+        this.setMenu()
     }
 
     async setMenu()
@@ -76,6 +98,13 @@ class App extends Http
         const menu = await this.get(`/coffee-shop/docs/assets/data/drinks.json`)
 
         this.#menu = new Menu(`body`, menu.body)
+    }
+
+    async setMain(type)
+    {
+        const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
+
+        this.#menu = new Main(`body`, main.body)
     }
 
     static async load(ev)
