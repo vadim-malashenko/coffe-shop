@@ -220,7 +220,14 @@ class App extends Http
     {
         const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
 
-        this.#main.update(main)
+        if (`undefined` !== typeof this.#main)
+        {
+            this.#main.update(main.body)
+        }
+        else
+        {
+            this.#menu = new Main(`body`, main.body)
+        }
     }
 
     async setMenu()
@@ -228,13 +235,6 @@ class App extends Http
         const menu = await this.get(`/coffee-shop/docs/assets/data/drinks.json`)
 
         this.#menu = new Menu(`body`, menu.body)
-    }
-
-    async setMain(type)
-    {
-        const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
-
-        this.#menu = new Main(`body`, main.body)
     }
 
     static async load(ev)
