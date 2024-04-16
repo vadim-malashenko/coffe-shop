@@ -22,12 +22,12 @@ class Event extends EventTarget
 
     on(type, handler)
     {
-        this.addEventListener(type, handler.bind(this))
+        this.addEventListener(type, handler)
     }
 
     off(type, handler)
     {
-        this.removedEventListener(type, handler.bind(this))
+        this.removedEventListener(type, handler)
     }
 
     static create(type, detail)
@@ -211,7 +211,7 @@ class App extends Http
                     [/^.*$/, alert]
                 ]).listen()
                 const type = this.#menu.getType()
-                this.#menu.on(`menu.click`, Router.navigate(ev.detail.type))
+                this.#menu.on(`menu.click`, ev => Router.navigate(ev.detail.type))
                 Router.navigate(type)
             })
     }
