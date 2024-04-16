@@ -42,6 +42,8 @@ class Menu extends Event
 
     constructor(selector, data)
     {
+        super()
+
         this.#root = document.querySelector(selector)
         this.#root.insertAjacentHTML(`beforeend`, this.render(data))
     }
@@ -60,6 +62,8 @@ class App extends Http
 
     constructor()
     {
+        super()
+        
         this.setMenu()
     }
 
@@ -72,7 +76,7 @@ class App extends Http
     static async load(ev)
     {
         window.App = new App()
-        
+
         console.log(ev.target)
     }
 }
