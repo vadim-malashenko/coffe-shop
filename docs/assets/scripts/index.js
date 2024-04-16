@@ -118,11 +118,11 @@ class App extends Http
     {
         super()
 
-        this.setMenu().then(r => 
-            this.setMain(this.#menu.getType())
-        )
-
-        this.#menu.on(`menu.click`, this.onMenuClick.bind(this))
+        this.setMenu()
+            .then(r => {
+                this.setMain(this.#menu.getType())
+                this.#menu.on(`menu.click`, this.onMenuClick.bind(this))
+            })
     }
 
     async onMenuClick(ev)

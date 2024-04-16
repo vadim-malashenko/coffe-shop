@@ -4,7 +4,7 @@
         "type": "coffee",
         "name": "Эспрессо",
         "img": {
-            "src": "coffee/espresso.jpg",
+            "src": "espresso.jpg",
             "alt": "Чашка эспрессо"
         },
         "price": 79
