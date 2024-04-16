@@ -52,9 +52,9 @@ class Menu extends Event
     {
         console.log(data)
 
-        return `<menu>`
-            + (data.map(item => `<li><img src="/coffee-shop/docs/assets/images/${item.src}"></li>`))
-        `</menu>`
+        return `<menu>
+            ${[...data].map(item => `<li><img src="/coffee-shop/docs/assets/images/${item.src}"></li>`)}
+        </menu>`
     }
 }
 
