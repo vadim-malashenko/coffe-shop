@@ -175,7 +175,7 @@ class Main extends Event
         super()
 
         this.#root = document.querySelector(selector)
-        this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
+        this.#root.insertAdjacentHTML(`beforeend`, `<main>${this.render(data)}</main>`)
         this.#element = document.querySelector(`main`)
     }
 
@@ -191,7 +191,7 @@ class Main extends Event
         const img = item => `<img src="/coffee-shop/docs/assets/images/${item.type}/${item.img.src}" alt="${item.img.alt}">`
         const article = item => `<article><div>${img(item)}${name(item)}${price(item)}</div></article>`
 
-        return `<main>${[...data].map(article).join(``)}</main>`
+        return [...data].map(article).join(``)
     }
 }
 
