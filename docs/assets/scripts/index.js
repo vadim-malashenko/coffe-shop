@@ -206,6 +206,10 @@ class App extends Http
 
         this.setMenu()
             .then(r => {
+                new Router([
+                    [/^(coffee|tea)\/*$/, app.update.bind(app)],
+                    [/^.*$/, alert]
+                ]).listen()
                 const type = this.#menu.getType()
                 window.history.pushState({}, location.href + `#${type}`)
                 this.setMain(type)
@@ -237,13 +241,7 @@ class App extends Http
 
     static async load(ev)
     {
-        const app = new App()
-
-        new Router([
-            [/^(coffee|tea)\/*$/, app.update.bind(app)],
-            [/^.*$/, app.not_found]
-        ])
-            .listen()
+        ev.target.app = new App()
     }
 }
 
