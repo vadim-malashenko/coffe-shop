@@ -45,7 +45,7 @@ class Menu extends Event
         super()
 
         this.#root = document.querySelector(selector)
-        this.#root.insertAjacentHTML(`beforeend`, this.render(data))
+        this.#root.insertAdjacentHTML(`beforeend`, this.render(data))
     }
 
     render(data)
