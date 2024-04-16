@@ -189,7 +189,7 @@ class Main extends Event
         const name = item => `<h1>${item.name}</h1>`
         const price = item => `<p><small>от </small><strong>${item.price}</strong></p>`
         const img = item => `<img src="/coffee-shop/docs/assets/images/${item.type}/${item.img.src}" alt="${item.img.alt}">`
-        const article = item => `<article>${img(item)}${name(item)}${price(item)}</article>`
+        const article = item => `<article><div>${img(item)}${name(item)}${price(item)}</div></article>`
 
         return `<main>${[...data].map(article).join(``)}</main>`
     }
