@@ -58,17 +58,22 @@ class App extends Http
 {
     #menu
 
-    constructor(menu)
+    constructor()
     {
-        this.#menu = menu
+        this.setMenu()
+    }
+
+    async setMenu()
+    {
+        const menu = await get(`/coffee-shop/docs/assets/data/drinks.json`)
+        this.#menu = new Menu(`body`, menu)
     }
 
     static async load(ev)
     {
-        const menu = await get(`/coffee-shop/docs/assets/data/drinks.json`)
-        const app = new App(new Menu(`body`, menu))
-
-        console.log(app)
+        window.App = new App()
+        
+        console.log(ev.target)
     }
 }
 
