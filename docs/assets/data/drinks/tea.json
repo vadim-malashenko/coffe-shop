@@ -1,0 +1,22 @@
+[
+    {
+        "id": "black",
+        "type": "tea",
+        "name": "Черный",
+        "img": {
+            "src": "black.jpg",
+            "alt": "Чашка черного чая"
+        },
+        "price": 69
+    },
+    {
+        "id": "green",
+        "type": "tea",
+        "name": "Зеленый",
+        "img": {
+            "src": "green.jpg",
+            "alt": "Чашка зеленого чая"
+        },
+        "price": 99
+    }
+]
