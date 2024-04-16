@@ -50,6 +50,8 @@ class Menu extends Event
 
     render(data)
     {
+        console.log(data)
+        
         return `<menu>`
             + data.map(item => `<li><img src="/coffee-shop/docs/assets/images/${item.src}"></li>`)
         `</menu>`
