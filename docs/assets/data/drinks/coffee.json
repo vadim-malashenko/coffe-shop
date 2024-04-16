@@ -1,6 +1,7 @@
 [
     {
         "id": "espresso",
+        "type": "coffee",
         "name": "Эспрессо",
         "img": {
             "src": "coffee/espresso.jpg",
