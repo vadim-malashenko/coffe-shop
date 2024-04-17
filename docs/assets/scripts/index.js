@@ -2,6 +2,11 @@ class Http
 {
     async get(url)
     {
+        if (null !== cached)
+        {
+            return cached
+        }
+
         const request = await fetch(url)
 
         const status = request.status
@@ -10,6 +15,54 @@ class Http
             : request.statusText
 
         return {status, body}
+    }
+}
+
+class Cache
+{
+    static staticObject()
+    {
+        return (() => {
+            let items = {}
+            return {
+                getItem: k => items [k] || null,
+                setItem: (k, v) => items [k] = v,
+                clear: () => items = {}
+            }
+        })()
+    }
+
+    static create(type)
+    {
+        let storage
+
+        try
+        {
+            storage = window[type]
+
+            const test = `___${type}___test___`
+
+            storage.setItem(test, test)
+            storage.removeItem(test)
+
+            return storage
+        }
+        catch (e)
+        {
+            return (
+                e instanceof DOMException
+                && (
+                    22 === e.code
+                    || 1014 === e.code
+                    || e.name === `QuotaExceededError`
+                    || e.name === `NS_ERROR_DOM_QUOTA_REACHED`
+                )
+                && storage
+                && 0 < storage.length
+            )
+                ? storage
+                : null
+        }
     }
 }
 
@@ -199,10 +252,13 @@ class App extends Http
 {
     #menu
     #main
+    #cache
 
     constructor()
     {
         super()
+
+        this.#cache = Cache.create(cacheType) ?? Cache.staticObject()
 
         new Router([
             [/^(coffee|tea)\/*$/, this.update.bind(this)],
@@ -218,7 +274,18 @@ class App extends Http
 
     async update(type)
     {
-        const main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
+        const cached = this.#cache.getItem(type)
+        let main
+
+        if (null !== cached)
+        {
+            main = cached
+        }
+        else
+        {
+            main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
+            this.#cache.setItem(type, main.body)
+        }
 
         if (`undefined` != typeof this.#main)
         {
