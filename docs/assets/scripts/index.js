@@ -258,7 +258,7 @@ class App extends Http
     {
         super()
 
-        this.#cache = Cache.create(cacheType) ?? Cache.staticObject()
+        this.#cache = Cache.create(`localStorage`) ?? Cache.staticObject()
 
         new Router([
             [/^(coffee|tea)\/*$/, this.update.bind(this)],
