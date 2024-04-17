@@ -274,12 +274,12 @@ class App extends Http
 
         if (null !== cached)
         {
-            main = cached
+            main = JSON.parse(cached)
         }
         else
         {
             main = await this.get(`/coffee-shop/docs/assets/data/drinks/${type}.json`)
-            this.#cache.setItem(type, main.body)
+            this.#cache.setItem(type, JSON.stringify(main.body))
         }
 
         if (`undefined` != typeof this.#main)
