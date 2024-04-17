@@ -274,7 +274,8 @@ class App extends Http
 
         if (null !== cached)
         {
-            main = JSON.parse(cached)
+            const body = JSON.parse(cached)
+            main = {body}
         }
         else
         {
