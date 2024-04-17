@@ -2,11 +2,6 @@ class Http
 {
     async get(url)
     {
-        if (null !== cached)
-        {
-            return cached
-        }
-
         const request = await fetch(url)
 
         const status = request.status

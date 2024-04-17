@@ -115,7 +115,7 @@ nav button {
 }
 
 nav :not(:first-child):hover {
-    color: var(--accent-text);
+    color: var(--text-light);
 }
 
 nav :not(:last-child) {
