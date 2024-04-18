@@ -11,7 +11,7 @@ export default class Repository
 
     get(key)
     {
-        this.#storage.read(key)
+        return this.#storage.read(key)
     }
 
     set(key, value)
