@@ -1,6 +1,6 @@
 import Menu from "./UI/Menu.js"
 
-class MenuPresenter extends Event
+export default class MenuPresenter extends Event
 {
     #menu
 

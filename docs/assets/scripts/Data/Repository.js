@@ -1,6 +1,6 @@
 import Storage from "./Storage.js"
 
-class Repository
+export default class Repository
 {
     #storage
 

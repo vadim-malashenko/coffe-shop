@@ -1,4 +1,4 @@
-class Drink
+export default class Drink
 {
     #id
     #type

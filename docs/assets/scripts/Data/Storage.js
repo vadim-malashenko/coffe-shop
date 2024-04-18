@@ -1,4 +1,4 @@
-class Storage
+export default class Storage
 {
     static ERROR_INVALID_STORAGE =
         `Storage is not available on this device: `

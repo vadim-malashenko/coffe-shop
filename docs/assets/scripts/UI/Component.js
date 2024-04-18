@@ -1,4 +1,6 @@
-class Component extends Event
+import Event from "./Event.js"
+
+export default class Component extends Event
 {
     #tagName
     #node

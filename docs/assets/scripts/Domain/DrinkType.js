@@ -1,4 +1,4 @@
-class DrinkType
+export default class DrinkType
 {
     #id
     #name

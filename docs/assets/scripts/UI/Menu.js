@@ -1,4 +1,6 @@
-class Menu extends Component
+import Component from "./Component.js"
+
+export default class Menu extends Component
 {
     constructor(parentNode, state)
     {

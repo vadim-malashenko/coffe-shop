@@ -1,4 +1,4 @@
-class Event extends EventTarget
+export default class Event extends EventTarget
 {
     emit(type, detail)
     {

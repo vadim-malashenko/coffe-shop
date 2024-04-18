@@ -2,7 +2,7 @@ import HttpService from "./Data/HttpService.js"
 import Repository from "./Data/Repository.js"
 import DrinkType from "./Domain/DrinkType.js"
 
-class MenuService extends HttpService
+export default class MenuService extends HttpService
 {
     #uri = `/coffee-shop/docs/assets/data/drinks.json`
     #menu

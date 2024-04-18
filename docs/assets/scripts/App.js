@@ -1,7 +1,7 @@
 import MenuService from "./MenuService.js"
 import MenuPresenter from "./MenuPresenter.js"
 
-class App
+export default class App
 {
     #service = new Set()
     #presenter = new Set()
