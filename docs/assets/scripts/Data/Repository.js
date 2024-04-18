@@ -1,3 +1,5 @@
+import Storage from "./Storage.js"
+
 class Repository
 {
     #storage

@@ -1,4 +1,4 @@
-import Menu from "./UI/Menu"
+import Menu from "./UI/Menu.js"
 
 class MenuPresenter extends Event
 {

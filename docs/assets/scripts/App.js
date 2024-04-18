@@ -1,5 +1,5 @@
-import MenuService from "./Data/MenuService"
-import MenuPresenter from "./Presentation/MenuPresenter"
+import MenuService from "./Data/MenuService.js"
+import MenuPresenter from "./Presentation/MenuPresenter.js"
 
 class App
 {

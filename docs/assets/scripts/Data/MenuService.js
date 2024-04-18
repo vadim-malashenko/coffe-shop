@@ -1,5 +1,5 @@
-import HttpService from "./HttpService"
-import Repository from "./Repository"
+import HttpService from "./HttpService.js"
+import Repository from "./Repository.js"
 
 class MenuService extends HttpService
 {
