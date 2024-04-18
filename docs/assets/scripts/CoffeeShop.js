@@ -8,7 +8,7 @@ export default class CoffeeShop
 
     constructor()
     {
-        this.#service.add(`menu`, new MenuService())
+        this.#service.set(`menu`, new MenuService())
 
         window.addEventListener(`load`, this.onLoad.bind(this))
     }
