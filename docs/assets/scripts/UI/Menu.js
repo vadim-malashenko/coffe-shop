@@ -22,11 +22,13 @@ export default class Menu extends Component
         this.emit(`menu.change`, {type: li.dataset.id})
     }
 
-    template(drinkType)
+    template(item)
     {
-        const name = `<p>${drinkType.name}</p>`
-        const img = `<img src="/coffee-shop/docs/assets/images/${drinkType.img.src}" alt="${drinkType.img.alt}">`
+        console.log(item)
         
-        return `<li data-id="${drinkType.id}">${img(drinkType)}${name(drinkType)}</li>`
+        const name = `<p>${item.name}</p>`
+        const img = `<img src="/coffee-shop/docs/assets/images/${item.img.src}" alt="${item.img.alt}">`
+        
+        return `<li data-id="${item.id}">${img(item)}${name(item)}</li>`
     }
 }
