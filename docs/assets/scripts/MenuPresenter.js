@@ -16,7 +16,7 @@ export default class MenuPresenter extends Event
         this.#menu.on(`menu.change`, this.onMenuChange.bind(this))
     }
 
-    async view(drinkTypes)
+    view(drinkTypes)
     {
         this.#menu.render(drinkTypes)
     }
