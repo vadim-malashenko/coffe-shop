@@ -12,13 +12,8 @@ export default class MenuPresenter extends Event
         const type = drinkTypes[0].id
 
         this.#menu = new Menu(parentNode, {type})
-        this.#menu.on(`menu.load`, ev => this.view(drinkTypes))
-        this.#menu.on(`menu.change`, this.onMenuChange.bind(this))
-    }
-
-    view(drinkTypes)
-    {
         this.#menu.render(drinkTypes)
+        this.#menu.on(`menu.change`, this.onMenuChange.bind(this))
     }
 
     async onMenuChange(ev)
