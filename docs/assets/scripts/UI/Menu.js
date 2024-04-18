@@ -28,8 +28,8 @@ export default class Menu extends Component
             .map(
                 item => `
                     <li data-id="${item.id}">
-                        <p>${item.name}</p>
                         <img src="/coffee-shop/docs/assets/images/${item.img.src}" alt="${item.img.alt}">
+                        <p>${item.name}</p>
                     </li>
                 `
             )
