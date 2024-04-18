@@ -28,7 +28,6 @@ export default class DrinkType
 
     static fromObject(type)
     {
-        console.log(type)
         return new DrinkType(type.id, type.name, type.img)
     }
 }
