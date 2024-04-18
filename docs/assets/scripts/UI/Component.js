@@ -7,6 +7,8 @@ export default class Component extends Event
 
     constructor(parentNode, tagName = `div`, state = {})
     {
+        super()
+        
         this.#tagName = tagName
         this.#node = document.createElement(this.#tagName)
         

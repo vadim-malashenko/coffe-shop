@@ -6,6 +6,8 @@ export default class MenuPresenter extends Event
 
     constructor(parentNode, drinkTypes)
     {
+        super()
+        
         const type = drinkTypes[0].id
 
         this.#menu = new Menu(parentNode, {type})
