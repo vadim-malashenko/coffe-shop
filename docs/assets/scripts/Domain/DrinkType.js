@@ -25,4 +25,9 @@ class DrinkType
     {
         return this.#img
     }
+
+    static fromObject(type)
+    {
+        return new DrinkType(type.id, type.name, type.img)
+    }
 }

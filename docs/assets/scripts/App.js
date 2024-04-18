@@ -1,4 +1,4 @@
-import MenuService from "./Data/MenuService.js"
+import MenuService from "./MenuService.js"
 import MenuPresenter from "./Presentation/MenuPresenter.js"
 
 class App
@@ -6,22 +6,14 @@ class App
     #menuService
     #menuPresenter
 
-    constructor()
+    constructor(drinks)
     {
         this.#menuService = new MenuService()
-    }
-
-    setMenuPresenter(presenter)
-    {
-        this.#menuPresenter = presenter
+        this.#menuPresenter = new MenuPresenter(document.body, drinks)
     }
 
     static async load(ev)
     {
-        const app = new App()
-
-        app.setMenuPresenter(
-            new MenuPresenter(document.body, await app.#menuService.getDrinks())
-        )
+        const app = new App(await app.#menuService.getDrinks())
     }
 }
