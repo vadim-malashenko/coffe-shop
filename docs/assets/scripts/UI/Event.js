@@ -1,5 +1,10 @@
 export default class Event extends EventTarget
 {
+    constructor()
+    {
+        super()
+    }
+
     emit(type, detail)
     {
         this.dispatchEvent(Event.create(type, detail))

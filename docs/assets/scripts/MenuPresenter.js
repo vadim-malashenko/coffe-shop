@@ -1,3 +1,4 @@
+import Event from "./UI/Event.js"
 import Menu from "./UI/Menu.js"
 
 export default class MenuPresenter extends Event
@@ -7,7 +8,7 @@ export default class MenuPresenter extends Event
     constructor(parentNode, drinkTypes)
     {
         super()
-        
+
         const type = drinkTypes[0].id
 
         this.#menu = new Menu(parentNode, {type})
