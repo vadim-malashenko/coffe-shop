@@ -1,3 +1,3 @@
-import App from "./App.js"
+import CoffeeShop from "./CoffeeShop.js"
 
-window.addEventListener(`load`, App.load)
+window.coffeeShop = new CoffeeShop()
