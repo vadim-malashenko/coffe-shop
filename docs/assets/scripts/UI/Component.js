@@ -8,11 +8,11 @@ export default class Component extends Event
     constructor(parentNode, tagName = `div`, state = {})
     {
         super()
-        
+
         this.#tagName = tagName
         this.#node = document.createElement(this.#tagName)
         
-        for (key in state) this.#node.dataset[key] = state[key]
+        for (let key in state) this.#node.dataset[key] = state[key]
 
         parentNode.appendChild(this.#node)
     }
