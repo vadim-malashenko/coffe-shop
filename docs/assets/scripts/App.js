@@ -3,17 +3,24 @@ import MenuPresenter from "./Presentation/MenuPresenter.js"
 
 class App
 {
-    #menuService
-    #menuPresenter
+    #service = new Set()
+    #presenter = new Set()
 
     constructor(drinks)
     {
-        this.#menuService = new MenuService()
-        this.#menuPresenter = new MenuPresenter(document.body, drinks)
+        this.#service.add(`menu`, new MenuService())
+
+        window.addEventListener(`load`, this.onLoad.bind(this))
     }
 
-    static async load(ev)
+    async onLoad(ev)
     {
-        const app = new App(await app.#menuService.getDrinks())
+        this.#presenter.add(
+            `menu`,
+            new MenuPresenter(
+                document.body,
+                await this.#service.get(`menu`).getDrinks()
+            )
+        )
     }
 }
