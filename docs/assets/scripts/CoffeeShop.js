@@ -3,8 +3,8 @@ import MenuPresenter from "./MenuPresenter.js"
 
 export default class CoffeeShop
 {
-    #service = new Set()
-    #presenter = new Set()
+    #service = new Map()
+    #presenter = new Map()
 
     constructor()
     {
