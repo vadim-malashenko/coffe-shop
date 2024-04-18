@@ -10,7 +10,7 @@ export default class MenuService extends HttpService
     constructor()
     {
         super()
-        
+
         this.#menu = Repository.createSessionRepository(`menu`)
     }
 
