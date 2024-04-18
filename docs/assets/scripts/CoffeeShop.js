@@ -15,7 +15,7 @@ export default class CoffeeShop
 
     async onLoad(ev)
     {
-        this.#presenter.add(
+        this.#presenter.set(
             `menu`,
             new MenuPresenter(
                 document.body,
