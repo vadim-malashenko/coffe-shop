@@ -22,7 +22,7 @@ export default class MenuService extends HttpService
         {
             const response = await this.get(this.#uri)
 
-            drinks = 200 === response ? response.body : []
+            drinks = 200 === response.status ? response.body : []
 
             this.#menu.set(`drinks`, drinks.map(DrinkType.fromObject))
         }
