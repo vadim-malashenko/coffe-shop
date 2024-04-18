@@ -18,7 +18,7 @@ export default class MenuService extends HttpService
     {
         let drinks = this.#menu.get(`drinks`)
 
-        if (null === drinks)
+        if (null === drinks || 0 === drinks.length)
         {
             const response = await this.get(this.#uri)
 
