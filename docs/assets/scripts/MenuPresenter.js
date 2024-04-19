@@ -18,7 +18,7 @@ export default class MenuPresenter extends Event
 
     async onMenuChange(ev)
     {
-        const type = ev.detatil.type
+        const type = ev.detail.type
 
         this.emit(`drink.type.change`, {type})
     }
