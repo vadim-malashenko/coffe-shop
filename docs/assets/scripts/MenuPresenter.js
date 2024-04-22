@@ -1,4 +1,4 @@
-import Event from "./UI/Event.js"
+import Event from "./Event.js"
 import Menu from "./UI/Menu.js"
 
 export default class MenuPresenter extends Event

@@ -1,5 +1,5 @@
-import HttpService from "./Data/HttpService.js"
-import Repository from "./Data/Repository.js"
+import HttpService from "./Data/Service/HttpService.js"
+import Repository from "./Data/Repository/Repository.js"
 import DrinkType from "./Domain/DrinkType.js"
 
 export default class MenuService extends HttpService

@@ -7,9 +7,9 @@ export default class HttpService
         const status = request.status
         
         const body = 200 === request.status
-            ? await request.json()
+            ? request
             : request.statusText
-
+        
         return {status, body}
     }
 }
